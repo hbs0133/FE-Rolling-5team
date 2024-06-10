@@ -6,3 +6,55 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
+
+:root {
+  /*colors*/
+  /* Purple colors*/
+  --purple-100: #f8f0ff;
+  --purple-200: #ecd9ff;
+  --purple-300: #dcb9ff;
+  --purple-400: #c894fd;
+  --purple-500: #ab57ff;
+  --purple-600: #9935ff;
+  --purple-700: #861dee;
+  --purple-800: #6e0ad1;
+  --purple-900: #5603a7;
+
+  /*Beige colors*/
+  --baige-100: #fff0d6;
+  --baige-200: #ffe2ad;
+  --baige-300: #ffc583;
+  --baige-400: #ffae65;
+  --baige-500: #ff8832;
+
+  /*Blue colors*/
+  --blue-100: #e2f5ff;
+  --blue-200: #b1e4ff;
+  --blue-300: #7cd2ff;
+  --blue-400: #34b9ff;
+  --blue-500: #00a2fe;
+
+  /*Green colors*/
+  --Green-100: #e4fbdc;
+  --Green-200: #d0f5c3;
+  --Green-300: #9be282;
+  --Green-400: #60cf37;
+  --Green-500: #2ba600;
+
+  /*Grayscale colors*/
+  --Gray-100: #f6f6f6;
+  --Gray-200: #eeeeee;
+  --Gray-300: #cccccc;
+  --Gray-400: #999999;
+  --Gray-500: #555555;
+  --Gray-600: #4a4a4a;
+  --Gray-700: #3a3a3a;
+  --Gray-800: #2b2b2b;
+  --Gray-900: #181818;
+
+  /*etc colors*/
+  --white: #ffffff;
+  --black: #000000;
+  --error-red: #dc3a3a;
+  --surface: #f6f8ff;
+}

@@ -1,6 +1,6 @@
-import "../src/style/reset.css";
-import "../src/style/common.css";
-import { Route, Routes } from "react-router-dom";
+import '../src/style/reset.css'
+import '../src/style/common.css'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <Route />
       </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

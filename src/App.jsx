@@ -1,12 +1,14 @@
-import "../src/style/reset.css";
-import "../src/style/common.scss";
-import { Route, Routes } from "react-router-dom";
+import '../src/style/reset.css';
+import '../src/style/common.scss';
+import { Route, Routes } from 'react-router-dom';
+import CreatedRollingListPage from './pages/CreatedRollingListPage/CreatedRollingListPage';
 
 function App() {
   return (
     <>
       <Routes>
         <Route />
+        <Route path="/" element={<CreatedRollingListPage />} />
       </Routes>
     </>
   );

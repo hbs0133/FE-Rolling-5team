@@ -1,0 +1,139 @@
+@import '../../style/common.scss';
+
+.container {
+  position: relative;
+  padding: 28px 24px 24px 24px;
+  width: 384px;
+  height: 280px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
+  background-color: #fff;
+  transform: scale(1);
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+
+  .profile-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+
+    & > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 14px;
+
+      .profile-img {
+        width: 56px;
+        height: 56px;
+        border-radius: 100px;
+        border: 1px solid #eee;
+      }
+
+      .profile-name {
+        font-size: 20px;
+
+        & > span {
+          font-weight: 700;
+        }
+      }
+
+      .profile-relation {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 0 8px;
+        border-radius: 4px;
+        @include font_regular_14;
+        line-height: 20px;
+        letter-spacing: -0.5%;
+        color: var(--purple-600);
+        background-color: var(--purple-100);
+      }
+    }
+
+    .delete-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .description {
+    margin-top: 16px;
+    height: 106px;
+    overflow: hidden;
+    @include font_regular_18;
+    line-height: 28px;
+    letter-spacing: -1%;
+    color: var(--gray-600);
+  }
+
+  .date {
+    margin-top: 16px;
+    @include font_regular_12;
+    line-height: 18px;
+    letter-spacing: -0.5%;
+    color: var(--gray-400);
+  }
+
+  .create-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    line-height: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 56px;
+    background-position: center;
+  }
+
+  .create-btn > img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
+
+  .create-btn:hover {
+    background-image: url('../../assets/icons/Plusbtn_Hover_ic.svg');
+  }
+
+  .create-btn:focus {
+    background-image: url('../../assets/icons/Plusbtn_Focus_ic.svg');
+  }
+
+  .create-btn:active {
+    background-image: url('../../assets/icons/Plusbtn_Pressed_ic.svg');
+  }
+
+  .create-btn:disabled {
+    background-image: url('../../assets/icons/Plusbtn_Disabled_ic.svg');
+    cursor: default;
+  }
+
+  .create-btn:disabled img,
+  .create-btn:hover img,
+  .create-btn:focus img,
+  .create-btn:active img {
+    opacity: 0;
+  }
+}

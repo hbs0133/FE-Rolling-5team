@@ -1,0 +1,33 @@
+@import '../../style/common.scss';
+
+.profile-relation {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0 8px;
+  border-radius: 4px;
+  @include font_regular_14;
+  line-height: 20px;
+  letter-spacing: -0.5%;
+  color: var(--purple-600);
+  background-color: var(--purple-100);
+}
+
+.beige {
+  color: var(--beige-500);
+  background-color: var(--beige-100);
+}
+
+.green {
+  color: var(--green-500);
+  background-color: var(--green-100);
+}
+
+.blue {
+  color: var(--blue-500);
+  background-color: var(--blue-100);
+}
+
+.purple {
+  color: var(--purple-600);
+  background-color: var(--purple-100);
+}

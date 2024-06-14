@@ -1,7 +1,11 @@
 button.dropdown-arrow {
   border: none;
+  padding: 6px;
 }
 
 .emoji-container {
   padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 8px;
 }

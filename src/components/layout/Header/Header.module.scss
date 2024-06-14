@@ -1,0 +1,53 @@
+@import "../../../styles/common.scss";
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+
+  // nav 기능은 생각중
+  // z-index: 10;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+
+  border-bottom: 1px solid #ededed;
+
+  .header {
+    width: 1200px;
+    height: 62px;
+    margin: auto;
+    padding: 11px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .create-button {
+      @include font_bold_16;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+      background-color: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 8px 16px;
+
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}

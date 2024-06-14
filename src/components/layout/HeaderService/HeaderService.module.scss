@@ -1,0 +1,67 @@
+@import "../../../styles/common.scss";
+
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.main {
+  width: 100%;
+  border-bottom: 1px solid #ededed;
+
+  .header-service {
+    width: 1200px;
+    margin: auto;
+    padding: 13px 0;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .user-name {
+      @include font_bold_28;
+    }
+
+    .service-wrapper {
+      display: flex;
+      align-items: center;
+
+      .vertical-divider {
+        height: 28px;
+        width: 0px;
+        border: 1px solid var(--gray-200);
+      }
+
+      .first-line {
+        background-color: #3a6481;
+        margin: 0 28px;
+      }
+
+      .second-line {
+        background-color: #3a6481;
+        margin: 0 13px;
+      }
+
+      .cumulative-user-container {
+        display: flex;
+        align-items: center;
+
+        gap: 11px;
+      }
+    }
+  }
+
+  .reaction-session {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .reaction-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+  }
+}

@@ -1,11 +1,11 @@
-@import "../../../../style/common.scss";
+@import "../../../../styles/common.scss";
 
 .link-container {
   padding: 10px 0;
 
   .first-link,
   .second-link {
-    padding: 12px 16px 12px 16px;
+    padding: 12px 16px;
     white-space: nowrap;
     @include font_regular_16;
     color: var(--gray-900);

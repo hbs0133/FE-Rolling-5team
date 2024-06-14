@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CardStyles from "./Card.module.scss";
 import deleteIcon from "../../assets/icons/delete_ic.svg";
-import plusEnabledIcon from "../../assets/icons/plusbtn_Enabled_ic.svg";
+import plusEnabledIcon from "../../assets/icons/plusbtn_enabled_ic.svg";
 
 const Card = () => {
   const [disabled, setDisabled] = useState(false);

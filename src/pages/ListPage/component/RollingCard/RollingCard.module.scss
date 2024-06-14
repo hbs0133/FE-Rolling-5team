@@ -1,0 +1,88 @@
+.name {
+  margin: 0px 0 12px;
+}
+
+.image {
+  margin: 12px 0;
+}
+
+.card {
+  padding: 30px 24px;
+  width: 275px;
+  height: 260px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.purple {
+  background-color: #ecd9ff;
+  background-image: url('../../../../assets/images/purple_pattern.svg');
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.beige {
+  background-color: #ffe2ad;
+  background-image: url('../../../../assets/images/beige_pattern.svg');
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.blue {
+  background-color: #b1e4ff;
+  background-image: url('../../../../assets/images/blue_pattern.svg');
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.green {
+  background-color: #d0f5c3;
+  background-image: url('../../../../assets/images/green_pattern.svg');
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.hr {
+  margin: 43px 0 16px;
+  color: rgba(0, 0, 0, 0.12);
+  opacity: 12%;
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 208px;
+    height: 232px;
+    padding: 30px 22px 20px;
+  }
+
+  .image {
+    margin: 12px 0 8px;
+  }
+
+  .hr {
+    margin: 33px 0 8px;
+  }
+
+  .purple {
+    background-size: 60%;
+  }
+
+  .beige {
+    background-size: 60%;
+  }
+
+  .blue {
+    background-size: 60%;
+  }
+
+  .green {
+    background-size: 60%;
+  }
+}

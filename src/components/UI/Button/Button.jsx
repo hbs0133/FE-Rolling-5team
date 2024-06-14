@@ -13,12 +13,14 @@ function Button({
   widthMax = false,
   children,
   onClick,
+  ...rest
 }) {
   const boxSize = Size[size]
   const fullwidth = widthMax ? styles.fullwidth : ''
 
   return (
     <button
+      {...rest}
       className={`${styles.button} ${boxSize} ${fullwidth}`}
       type={type}
       disabled={disable}

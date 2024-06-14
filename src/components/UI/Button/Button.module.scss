@@ -2,6 +2,8 @@
   transition: 0.3s;
   background-color: var(--purple-600);
   color: var(--white);
+  border: none;
+  cursor: pointer;
 
   &:hover {
     transition: 0.3s;
@@ -10,6 +12,7 @@
 
   &:disabled {
     background-color: var(--gray-300);
+    cursor: not-allowed;
   }
 }
 

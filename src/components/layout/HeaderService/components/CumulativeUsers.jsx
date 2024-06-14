@@ -1,5 +1,4 @@
 import React from "react";
-import UserProfile from "./UserProfile";
 import HeaderServiceStyles from "../HeaderService.module.scss";
 import CountPeople from "../../../UI/CountPeople/CountPeople.jsx";
 import ProfileImagePreview from "../../../UI/ProfileImagePreview/ProfileImagePreview";

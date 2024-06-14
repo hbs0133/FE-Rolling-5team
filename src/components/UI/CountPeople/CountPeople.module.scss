@@ -1,0 +1,19 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+@import '../../../style/common.scss';
+
+.countpeople {
+  @include font_bold_16;
+
+  @media (max-width: 768px) {
+    @include font_bold_14;
+  }
+}
+
+.countText {
+  @include font_regular_16;
+
+  @media (max-width: 768px) {
+    @include font_regular_14;
+  }
+}

@@ -1,4 +1,4 @@
-@import '../../style/common.scss';
+@import "../../styles/common.scss";
 
 .container {
   position: relative;
@@ -114,19 +114,19 @@
   }
 
   .create-btn:hover {
-    background-image: url('../../assets/icons/Plusbtn_Hover_ic.svg');
+    background-image: url("../../assets/icons/plusbtn_Hover_ic.svg");
   }
 
   .create-btn:focus {
-    background-image: url('../../assets/icons/Plusbtn_Focus_ic.svg');
+    background-image: url("../../assets/icons/plusbtn_Focus_ic.svg");
   }
 
   .create-btn:active {
-    background-image: url('../../assets/icons/Plusbtn_Pressed_ic.svg');
+    background-image: url("../../assets/icons/plusbtn_Pressed_ic.svg");
   }
 
   .create-btn:disabled {
-    background-image: url('../../assets/icons/Plusbtn_Disabled_ic.svg');
+    background-image: url("../../assets/icons/plusbtn_Disabled_ic.svg");
     cursor: default;
   }
 

@@ -1,0 +1,24 @@
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.emoji-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .emoji-button {
+    @include font-style(16px, 400, 20px, var(--white));
+    background-color: rgba(0, 0, 0, 0.54);
+    padding: 8px 12px;
+    border-radius: 32px;
+
+    .emoji {
+      z-index: 1;
+      white-space: nowrap;
+    }
+  }
+}

@@ -2,10 +2,9 @@ import React from "react";
 import Dropdown from "../Dropdown";
 import arrowDown from "../../../../assets/icons/ic_arrow_down.svg";
 import ExpandedReactionDropdownStyles from "./ExpandedReactionDropdown.module.scss";
+import ReactionEmojiStyles from "../../EmojiReaction/ReactionEmoji.module.scss";
 
 export function ExpandedReactionDropdown({ reactions }) {
-  const reactionsData = reactions || [{ id: 1, emoji: "👍", count: 50 }];
-
   return (
     <Dropdown
       trigger={
@@ -14,10 +13,13 @@ export function ExpandedReactionDropdown({ reactions }) {
         </button>
       }
     >
-      <div className={ExpandedReactionDropdownStyles["emoji-container"]}>
-        {reactionsData.map(({ id, emoji, count }) => (
-          <span key={id} className={ExpandedReactionDropdownStyles.emoji}>
-            {emoji} {count}
+      <div
+        className={`${ReactionEmojiStyles["emoji-container"]} ${ExpandedReactionDropdownStyles["emoji-container"]}`}
+      >
+        {reactions.map(({ id, emoji, count }) => (
+          <span key={id} className={ReactionEmojiStyles["emoji-button"]}>
+            <span className={ReactionEmojiStyles["emoji"]}>{emoji} </span>
+            <span className={ReactionEmojiStyles["emoji"]}>{count}</span>
           </span>
         ))}
       </div>

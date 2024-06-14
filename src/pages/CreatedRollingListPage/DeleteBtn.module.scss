@@ -1,0 +1,18 @@
+.delete-btn {
+  width: 92px;
+  height: 39px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -1%;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--purple-500);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--purple-600);
+  }
+}

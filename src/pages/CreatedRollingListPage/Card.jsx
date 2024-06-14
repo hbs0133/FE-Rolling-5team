@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import CardStyles from './Card.module.scss';
+import Badge from './Badge';
 import deleteIcon from '../../assets/icons/delete_ic.svg';
-import plusEnabledIcon from '../../assets/icons/Plusbtn_Enabled_ic.svg';
 
 const Card = () => {
-  const [disabled, setDisabled] = useState(false);
   return (
     <>
       <div className={CardStyles.container}>
@@ -19,7 +18,7 @@ const Card = () => {
               <h2 className={CardStyles['profile-name']}>
                 From. <span>김당찬</span>
               </h2>
-              <div className={CardStyles['profile-relation']}>동료</div>
+              <Badge>지인</Badge>
             </div>
           </div>
           <button type="button" className={CardStyles['delete-btn']}>
@@ -40,15 +39,6 @@ const Card = () => {
           주세요
         </p>
         <div className={CardStyles.date}>2020.02.20</div>
-      </div>
-      <div className={CardStyles.container}>
-        <button
-          type="button"
-          disabled={disabled}
-          className={CardStyles['create-btn']}
-        >
-          <img src={plusEnabledIcon} alt="카드생성아이콘" />
-        </button>
       </div>
     </>
   );

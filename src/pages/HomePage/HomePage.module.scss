@@ -1,0 +1,129 @@
+@import "../../styles/common.scss";
+
+.homepage {
+  max-width: 1200px;
+  margin: 60px auto 0;
+}
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.homepage-section {
+  height: 324px;
+  border-radius: 16px;
+  background-color: var(--surface);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.point {
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 50px;
+  padding: 6px 12px;
+  background-color: var(--purple-600);
+  @include font_bold_14;
+  line-height: 20px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.h1 {
+  @include font_bold_24;
+  line-height: 36px;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.h2 {
+  @include font-regular-18;
+  line-height: 28px;
+  color: var(--gray-500);
+}
+.homepage-section.reverse {
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 0;
+}
+.button {
+  margin: 0 auto;
+}
+a {
+  color: var(--white);
+}
+@media (min-width: 1200px) {
+  .OnMobile {
+    display: none;
+  }
+  .topImage-mobile{
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .homepage {
+    padding: 0 24px;
+  }
+  .homepage-section,
+  .homepage-section.reverse {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 440px;
+  }
+  .homepage-content {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  .hideOnTablet {
+    display: none;
+  }
+  .buttonContainer {
+    margin: 72px auto 0;
+  }
+  .topImage-mobile{
+    display: none;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .homepage-wrapper{
+    gap:24px;
+  }
+  .homepage {
+    padding: 0 20px;
+  }
+  .homepage-section,
+  .homepage-section.reverse {
+    height: 352px;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+  }
+  .homepage-content{
+    margin: 24px 24px 0;
+  }
+  .h1 {
+    display: none;
+  }
+  .OnMobile {
+    @include font_bold_18;
+    line-height: 28px;
+    color: var(--gray-900);
+  }
+  .topImage{
+    display: none;
+  }
+  .topImage-mobile{
+    align-self: center;
+  }
+  .bottomImage{
+    width:320px;
+    height:113px;
+  }
+  .h2{
+    @include font-regular-15;
+  }
+}

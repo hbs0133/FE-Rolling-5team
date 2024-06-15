@@ -51,11 +51,7 @@ function PostDropDown({
       itemClassName={`${itemClassName} ${postDropDownStyles.item}`}
       onToggle={handleToggle}
       {...rest}
-    >
-      {/* <div className={addReactionDropdownstyles["emoji-container"]}>
-            <Picker data={data} onSelect={handleEmojiSelect} />
-          </div> */}
-    </Dropdown>
+    ></Dropdown>
   );
 }
 

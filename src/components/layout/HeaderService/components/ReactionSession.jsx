@@ -1,6 +1,6 @@
 import AddReaction from "./AddReaction";
 import HeaderServiceStyles from "../HeaderService.module.scss";
-import TopReactions from "../../../UI/EmojiReaction/TopReactions";
+import TopReactions from "../../../UI/ReactionEmoji/TopReactions";
 import ExpandedReactionDropdown from "../../../UI/Dropdown/components/ExpandedReactionDropdown";
 
 function ReactionSession({ topReactions, reactions }) {

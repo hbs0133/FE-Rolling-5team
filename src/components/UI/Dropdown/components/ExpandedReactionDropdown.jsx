@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "../Dropdown";
 import arrowDown from "../../../../assets/icons/ic_arrow_down.svg";
 import ExpandedReactionDropdownStyles from "./ExpandedReactionDropdown.module.scss";
-import reactionEmojiStyles from "../../EmojiReaction/ReactionEmoji.module.scss";
+import reactionEmojiStyles from "../../ReactionEmoji/ReactionEmoji.module.scss";
 
 export function ExpandedReactionDropdown({ reactions }) {
   return (

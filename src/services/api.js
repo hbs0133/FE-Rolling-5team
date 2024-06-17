@@ -33,3 +33,25 @@ export async function getReactionList({
     `${BASE_URL}/recipients/${id}/reactions/?limit=${limit}&offset=${offset}&sort=${sort}`
   );
 }
+
+export async function postReaction({
+  id = 0,
+  reaction = { emoji: "", type: "increase" },
+}) {
+  const url = `${BASE_URL}/recipients/${id}/reactions/`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reaction),
+  });
+
+  if (!response.ok) {
+    const message = `An error has occurred: ${response.status}`;
+    throw new Error(message);
+  }
+
+  return await response.json();
+}

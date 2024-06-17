@@ -1,22 +1,5 @@
-@mixin font-style($size, $weight, $lineHeight, $color) {
-  font-size: $size;
-  font-weight: $weight;
-  line-height: $lineHeight;
-  color: $color;
-}
-
-.emoji-container {
+.add-container {
   display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-
-  .emoji {
-    margin: 5px;
-    font-size: 24px;
-  }
-}
-
-button.custom-button {
+  align-items: center;
   gap: 4px;
-  @include font-style(16px, 500, 24px, var(--gray-900));
 }

@@ -1,4 +1,4 @@
-import HomeStyles from "../HomePage/HomePage.module.scss";
+import HomeStyles from "./HomePage.module.scss";
 import { Link } from "react-router-dom";
 import homepage_01 from "../../assets/images/homepage_01.png";
 import homepage_mobile from "../../assets/images/homepage_mobile.png";
@@ -31,13 +31,6 @@ function HomePage() {
             width="720"
             height="204"
           />
-          <img
-            className={HomeStyles["topImage-mobile"]}
-            src={homepage_mobile}
-            alt="홈페이지 상단 모바일"
-            width="530"
-            height="150"
-          />
         </section>
 
         <section
@@ -46,7 +39,7 @@ function HomePage() {
           <div className={HomeStyles["homepage-content"]}>
             <span className={HomeStyles.point}>Point. 02</span>
             <h1 className={HomeStyles.h1}>
-              서로에게 이모지로 감정을{" "}
+              서로에게 이모지로 감정을
               <br className={HomeStyles.hideOnTablet} /> 표현해보세요
             </h1>
             <h1 className={HomeStyles.OnMobile}>
@@ -67,11 +60,8 @@ function HomePage() {
         </section>
       </div>
       <div className={HomeStyles.buttonContainer}>
-        <Button
-          className={`${HomeStyles.button} ${isTablet || isMobile ? HomeStyles.fullwidth : ""}`}
-          widthMax={isTablet || isMobile}
-        >
-          <Link to="list">구경해보기</Link>
+        <Button className={HomeStyles.button} widthMax={isTablet || isMobile}>
+          <Link to="/post">구경해보기</Link>
         </Button>
       </div>
     </div>

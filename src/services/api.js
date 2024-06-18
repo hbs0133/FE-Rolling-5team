@@ -1,4 +1,4 @@
-const BASE_URL = "https://rolling-api.vercel.app/6-1";
+const BASE_URL = "https://rolling-api.vercel.app/6-5";
 const IMG_URL = "https://rolling-api.vercel.app";
 
 async function GET(URL) {
@@ -34,6 +34,34 @@ export async function getReactionList({
   );
 }
 
-export async function getRecipientRollingPaper(id) {
+export async function postReaction({
+  id = 0,
+  reaction = { emoji: "", type: "increase" },
+}) {
+  const url = `${BASE_URL}/recipients/${id}/reactions/`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reaction),
+  });
+
+  if (!response.ok) {
+    const message = `An error has occurred: ${response.status}`;
+    throw new Error(message);
+  }
+
+  return await response.json();
+}
+
+export async function getRecipientRollingPaper({ id = 0 }) {
   return await GET(`${BASE_URL}/recipients/${id}/`);
+}
+
+export async function getRecipientMessages({ id = 0, limit = 8, offset = 0 }) {
+  return await GET(
+    `${BASE_URL}/recipients/${id}/messages/?limit=${limit}&offset=${offset}`
+  );
 }

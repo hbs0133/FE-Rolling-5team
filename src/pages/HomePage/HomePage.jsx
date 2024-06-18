@@ -56,9 +56,9 @@ function HomePage() {
         </section>
       </div>
       <div className={HomeStyles.buttonContainer}>
-      <Link to="/post"><Button className={HomeStyles.button}>
-          구경해보기
-        </Button></Link>
+        <Link to="/list">
+          <Button className={HomeStyles.button}>구경해보기</Button>
+        </Link>
       </div>
     </div>
   );

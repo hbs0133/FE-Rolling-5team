@@ -32,5 +32,7 @@
   line-height: 18px;
   color: #484848;
   background-color: var(--white);
-  z-index: 5;
+
+  // 총 인원수 표시 안되서 추가
+  z-index: 10;
 }

@@ -1,6 +1,10 @@
-.dropdown-arrow {
+.trigger {
   border: none;
   padding: 6px;
+}
+
+.trigger:hover {
+  background-color: var(--gray-100);
 }
 
 .emoji-container {

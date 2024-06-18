@@ -1,5 +1,13 @@
+.trigger:hover {
+  background-color: var(--gray-100);
+}
+
 .add-container {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.emoji-button:hover {
+  background-color: rgba(0, 0, 0, 0.47);
 }

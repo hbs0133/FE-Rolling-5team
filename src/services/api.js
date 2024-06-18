@@ -1,4 +1,4 @@
-const BASE_URL = "https://rolling-api.vercel.app/10-100";
+const BASE_URL = "https://rolling-api.vercel.app/7-5";
 const IMG_URL = "https://rolling-api.vercel.app";
 
 async function GET(URL) {
@@ -32,6 +32,21 @@ export async function getReactionList({
   return await GET(
     `${BASE_URL}/recipients/${id}/reactions/?limit=${limit}&offset=${offset}&sort=${sort}`
   );
+}
+
+export async function getRecipientIdList({
+  limit = 1,
+  sort = "",
+  id = null,
+  isReactions = false,
+  offset = 0,
+} = {}) {
+  let url = `${BASE_URL}/recipients/`;
+
+  url += id ? (isReactions ? `${id}/reactions/` : `${id}/`) : "";
+  url += `?limit=${limit}&offset=${offset}&sort=${sort}`;
+
+  return await GET(url);
 }
 
 export async function postReaction({

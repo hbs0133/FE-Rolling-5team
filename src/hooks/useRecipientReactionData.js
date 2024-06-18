@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  getReactionList,
-  getRecipientList,
-  postReaction,
-} from "../services/api";
+import { getRecipientIdList, postReaction } from "../services/api";
 import { useParams } from "react-router-dom";
 
 const useRecipientData = (pageId = 0) => {
@@ -22,18 +18,18 @@ const useRecipientData = (pageId = 0) => {
 
   const fetchRecipientData = async (recipientId) => {
     try {
-      const recipient = await getRecipientList({ limit: 50 });
-      const reaction = await getReactionList({ id: recipientId });
-
-      const foundRecipient = recipient.results.find((r) => {
-        return r.id === recipientId;
+      const recipient = await getRecipientIdList({ id: recipientId });
+      const reaction = await getRecipientIdList({
+        id: recipientId,
+        isReactions: true,
+        limit: 8,
       });
 
       setRecipientData({
-        topReactions: foundRecipient.topReactions,
-        userName: foundRecipient.name,
-        senderCount: foundRecipient.messageCount,
-        recentMessages: foundRecipient.recentMessages,
+        topReactions: recipient.topReactions,
+        userName: recipient.name,
+        senderCount: recipient.messageCount,
+        recentMessages: recipient.recentMessages,
         reactions: reaction.results,
       });
     } catch (error) {

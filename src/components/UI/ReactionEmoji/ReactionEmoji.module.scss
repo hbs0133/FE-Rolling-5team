@@ -13,14 +13,23 @@
 
   .emoji-button {
     @include font-style(16px, 400, 20px, var(--white));
+    width: 66px;
+    height: 36px;
     background-color: rgba(0, 0, 0, 0.54);
-    padding: 8px 12px;
     border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 
     .emoji {
       z-index: 1;
       white-space: nowrap;
+    }
+
+    @media (max-width: 760px) {
+      width: 53px;
+      height: 28px;
     }
   }
 

@@ -1,0 +1,92 @@
+@import "../../styles/common.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 42px;
+  gap: 62px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+    gap: 50px;
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      label {
+        @include font-bold-24;
+        line-height: 36px;
+      }
+
+      input[type="text"] {
+        padding: 12px 16px;
+        height: 50px;
+        border: 1px solid var(--gray-300);
+        border-radius: 8px;
+        transition: 0.4s;
+        @include font_regular_16;
+        font-family: "Pretendard Variable", Pretendard, -apple-system,
+          BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif,
+          "Poppins";
+        &:hover {
+          border: 1px solid var(--gray-500);
+        }
+        &:focus {
+          border: 1px solid var(--gray-500);
+          outline: none;
+        }
+        &::placeholder {
+          @include font_regular_16;
+          font-family: "Pretendard Variable", Pretendard, -apple-system,
+            BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif,
+            "Poppins";
+        }
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+      .profile-preview {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        .profile-preview-image {
+          width: 80px;
+          height: 80px;
+          border-radius: 100px;
+          object-fit: cover;
+          box-shadow: 3px 3px 5px var(--gray-300);
+        }
+        .profile-image-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          bottom: -5px;
+          right: -5px;
+          width: 30px;
+          height: 30px;
+          border: none;
+          border-radius: 9999px;
+          font-size: 24px;
+          color: var(--white);
+          background-color: var(--gray-500);
+          z-index: 1;
+          cursor: pointer;
+        }
+      }
+    }
+    .button {
+      margin-bottom: 60px;
+    }
+  }
+}

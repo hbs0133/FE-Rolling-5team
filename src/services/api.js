@@ -55,3 +55,18 @@ export async function postReaction({
 
   return await response.json();
 }
+
+export const postMessage = async (formData) => {
+  const response = await fetch(`${BASE_URL}/recipients/7890/messages/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("메시지 등록에 실패했습니다.");
+  }
+  const body = await response.json();
+  return body;
+};

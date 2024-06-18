@@ -1,4 +1,4 @@
-const BASE_URL = "https://rolling-api.vercel.app/6-5";
+const BASE_URL = "https://rolling-api.vercel.app/10-100";
 const IMG_URL = "https://rolling-api.vercel.app";
 
 async function GET(URL) {
@@ -15,7 +15,7 @@ async function GET(URL) {
   }
 }
 
-export async function getRecipientList({ limit = 4, sort = "" } = {}) {
+export async function getRecipientList({ limit = 10, sort = "" } = {}) {
   return await GET(`${BASE_URL}/recipients/?limit=${limit}&sort=${sort}`);
 }
 
@@ -55,6 +55,21 @@ export async function postReaction({
 
   return await response.json();
 }
+
+export const postMessage = async (formData) => {
+  const response = await fetch(`${BASE_URL}/recipients/7890/messages/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("메시지 등록에 실패했습니다.");
+  }
+  const body = await response.json();
+  return body;
+};
 
 export async function getRecipientRollingPaper({ id = 0 }) {
   return await GET(`${BASE_URL}/recipients/${id}/`);

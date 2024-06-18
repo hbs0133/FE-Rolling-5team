@@ -3,13 +3,16 @@ import RollingCardName from './RollingCardName'
 import ProfileImagePreview from '../../../../components/UI/ProfileImagePreview/ProfileImagePreview'
 import CountPeople from '../../../../components/UI/CountPeople/CountPeople'
 import styles from './RollingCard.module.scss'
+import TopReactions from '../../../../components/UI/ReactionEmoji/TopReactions'
 
 function RollingCard({
   name,
   peopleCount,
-  recentMessage,
+  recentMessages,
   backgroundImage,
   backgroundColor,
+  topReactions,
+  isPhone,
 }) {
   const style = {
     backgroundImage: backgroundImage
@@ -21,21 +24,30 @@ function RollingCard({
 
   return (
     <>
-      <div className={`${style.card} ${style[backgroundColor]}`} style={style}>
+      <div
+        className={`${styles.card} ${styles[backgroundColor]}`}
+        style={style}
+      >
         <div className={styles.name}>
-          <RollingCardName name={name} backgroundImage={backgroundImage} />
+          <RollingCardName
+            name={name}
+            backgroundImage={backgroundImage}
+            isPhone={isPhone}
+          />
         </div>
-        <div className={style.image}>
+        <div className={styles.image}>
           <ProfileImagePreview
             peopleCount={peopleCount}
-            recentMessage={recentMessage}
+            recentMessage={recentMessages}
           />
         </div>
         <CountPeople
           peopleCount={peopleCount}
           backgrounImage={backgroundImage}
+          isPhone={isPhone}
         />
-        <hr className={style.hr} />
+        <hr className={styles.hr} />
+        <TopReactions topReactions={topReactions} />
       </div>
     </>
   )

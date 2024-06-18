@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 const getDeviceType = ({ isTablet, isMobile, isDesktop }) => {
   if (isTablet) {
-    return "tablet";
+    return 'tablet'
   } else if (isMobile) {
-    return "mobile";
+    return 'mobile'
   } else if (isDesktop) {
-    return "desktop";
+    return 'desktop'
   } else {
-    return "unknown";
+    return 'unknown'
   }
-};
+}
 
 // 기기 타입을 판별하는 함수 정의
 const useDeviceType = () => {
@@ -18,7 +18,7 @@ const useDeviceType = () => {
     isMobile: window.innerWidth <= 767,
     isTablet: window.innerWidth >= 768 && window.innerWidth <= 1199,
     isDesktop: window.innerWidth >= 1200,
-  });
+  })
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,17 +26,17 @@ const useDeviceType = () => {
         isMobile: window.innerWidth <= 767,
         isTablet: window.innerWidth >= 768 && window.innerWidth <= 1199,
         isDesktop: window.innerWidth >= 1200,
-      });
-    };
+      })
+    }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  return getDeviceType(deviceType);
-};
+  return getDeviceType(deviceType)
+}
 
-export default useDeviceType;
+export default useDeviceType

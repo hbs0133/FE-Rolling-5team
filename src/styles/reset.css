@@ -131,7 +131,7 @@ a {
   color: #000;
   cursor: pointer;
 }
-body {
+* {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

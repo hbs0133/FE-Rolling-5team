@@ -53,7 +53,9 @@ const useRecipientData = (pageId = 0) => {
   };
 
   useEffect(() => {
-    fetchRecipientData(recipientId);
+    if (recipientId) {
+      fetchRecipientData(recipientId);
+    }
   }, [recipientId, selectedEmoji]);
 
   const handleSelectedEmoji = (emoji) => {

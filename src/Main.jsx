@@ -20,8 +20,8 @@ function Main() {
           <Route path=":id" element={<CreatedRollingListPage />} />
           <Route path=":id/edit" element={<EditPage />} />
           <Route path=":id/message" element={<PostMessagePage />} />
-        </Route> */}
-      </Route>
+        </Route>
+      </Route> */}
     </Routes>
   )
 }

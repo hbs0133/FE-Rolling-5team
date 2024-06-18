@@ -1,39 +1,70 @@
-import ModalStyles from './Modal.module.scss';
-import Button from '../../components/UI/Button/Button';
+import { Link } from "react-router-dom";
+import ModalStyles from "./Modal.module.scss";
+import Button from "../../components/UI/Button/Button";
+import Badge from "./Badge";
+import closeIcon from "../../assets/icons/close_icon.svg";
 
-const Modal = ({ image, name, relation, date, description }) => {
+const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, key }) => {
+  const handleCheckClick = () => {
+    setIsModal((prev) => ({
+      ...prev,
+      modalId: 0,
+    }));
+  };
+
+  const handleDeleteBtnClick = () => {
+    setIsDeleteModal((prev) => ({
+      ...prev,
+      isModal: false,
+      modalId: recentMessages.id,
+    }));
+  };
+
   return (
-    <div className={ModalStyles.container}>
-      <div className={ModalStyles['profile-wrap']}>
-        <div>
-          <img
-            src="#"
-            alt="프로필이미지"
-            className={ModalStyles['profile-img']}
-          />
+    <div className={ModalStyles["background-opacity"]} key={key}>
+      <div className={ModalStyles.container}>
+        <button onClick={handleCheckClick} className={ModalStyles["close-btn"]}>
+          <img src={closeIcon} alt="닫기버튼" />
+        </button>
+        <div className={ModalStyles["profile-wrap"]}>
           <div>
-            <h2 className={ModalStyles['profile-name']}>
-              From. <span>김당찬</span>
-            </h2>
-            <div className={ModalStyles['profile-relation']}>동료</div>
+            <img
+              src={recentMessages.profileImageURL}
+              alt="프로필이미지"
+              className={ModalStyles["profile-img"]}
+            />
+            <div>
+              <h2 className={ModalStyles["profile-name"]}>
+                From. <span>{recentMessages.sender}</span>
+              </h2>
+              <Badge>{recentMessages.relationship}</Badge>
+            </div>
+          </div>
+          <div className={ModalStyles.date}>
+            {recentMessages.createdAt.replace(/-/g, ".").split("T")[0]}
           </div>
         </div>
-        <div className={ModalStyles.date}>날짜</div>
-      </div>
-      <p className={ModalStyles.description}>
-        안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까
-        고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-        주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요
-        안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까
-        고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요
-      </p>
-      <div className={ModalStyles['check-Button']}>
-        <Button size="small">확인</Button>
+        <p
+          className={ModalStyles.description}
+          dangerouslySetInnerHTML={{ __html: recentMessages.content }}
+          style={{ fontFamily: recentMessages.font }}
+        ></p>
+        <div className={ModalStyles["button-wrap"]}>
+          <div className={ModalStyles["check-Button"]}>
+            <Link to={`/put/${recentMessages.id}`}>
+              <Button size="small">수정하기</Button>
+            </Link>
+          </div>
+          <div className={ModalStyles["check-Button"]}>
+            <Button
+              size="small"
+              className={ModalStyles["font-color"]}
+              onClick={handleDeleteBtnClick}
+            >
+              삭제하기
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

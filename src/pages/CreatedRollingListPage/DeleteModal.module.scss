@@ -1,0 +1,82 @@
+@import "../../styles/common.scss";
+
+.background-opacity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .deleteModal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 50px;
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: var(--white);
+
+    .deleteModal-checkMessage {
+      h2 {
+        @include font_bold_24;
+        color: var(--gray-500);
+        text-align: center;
+      }
+
+      div {
+        margin-top: 10px;
+        line-height: 18px;
+        @include font_regular_14;
+        color: var(--gray-400);
+        text-align: center;
+      }
+    }
+
+    .button-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      width: 100%;
+
+      .deleteModal-check-btn,
+      .deleteModal-close-btn {
+        padding: 0;
+        width: 100px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        @include font_bold_16;
+        color: var(--white);
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .deleteModal-check-btn {
+        background-color: var(--purple-600);
+
+        &:hover {
+          background-color: var(--purple-700);
+          transition: 0.3s;
+        }
+      }
+
+      .deleteModal-close-btn {
+        background-color: var(--gray-300);
+
+        &:hover {
+          background-color: var(--gray-400);
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}

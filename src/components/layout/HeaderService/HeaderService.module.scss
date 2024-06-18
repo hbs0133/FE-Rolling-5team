@@ -10,6 +10,11 @@
 .main {
   width: 100%;
   border-bottom: 1px solid #ededed;
+  background-color: var(--white);
+
+  position: sticky;
+  top: -2px;
+  z-index: 1000;
 
   .header-service {
     width: 1200px;
@@ -62,6 +67,45 @@
       display: flex;
       align-items: center;
       gap: 2px;
+    }
+  }
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .main {
+    .header-service {
+      width: 100%;
+      padding: 13px 24px;
+    }
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .main {
+    .header-service {
+      width: 100%;
+      padding: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .user-name {
+        width: 100%;
+        padding: 12px 20px;
+        border: 1px solid var(--gray-200);
+      }
+      .service-wrapper {
+        width: 100%;
+        padding: 8px 20px;
+        justify-content: space-between;
+
+        .second-line {
+          margin: 0 15px;
+        }
+      }
     }
   }
 }

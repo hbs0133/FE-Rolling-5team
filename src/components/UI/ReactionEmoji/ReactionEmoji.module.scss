@@ -9,16 +9,22 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: default;
 
   .emoji-button {
     @include font-style(16px, 400, 20px, var(--white));
     background-color: rgba(0, 0, 0, 0.54);
     padding: 8px 12px;
     border-radius: 32px;
+    cursor: pointer;
 
     .emoji {
       z-index: 1;
       white-space: nowrap;
     }
+  }
+
+  .emoji-button:hover {
+    background-color: rgba(0, 0, 0, 0.47);
   }
 }

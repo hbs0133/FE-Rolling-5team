@@ -1,10 +1,13 @@
 @import "../../../../styles/common.scss";
 
-.link-container {
+.trigger:hover {
+  background-color: var(--gray-100);
+}
+
+.menu {
   padding: 10px 0;
 
-  .first-link,
-  .second-link {
+  .item {
     padding: 12px 16px;
     white-space: nowrap;
     @include font_regular_16;
@@ -13,8 +16,11 @@
     line-height: 26px;
   }
 
-  .first-link:hover,
-  .second-link:hover {
+  .item:hover {
     background-color: var(--gray-100);
   }
+}
+
+.toast {
+  position: absolute;
 }

@@ -14,7 +14,7 @@ import {
 
 const CreatedRollingListPage = () => {
   const { id } = useParams();
-  const pathId = "7191";
+  const pathId = id;
 
   const [isLoading, setIsLoading] = useState(false);
   const [rollingCard, setRollingCard] = useState({

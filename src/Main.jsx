@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 import { Routes, Route } from 'react-router-dom'
 import App from './App'
 import HomePage from '../src/pages/HomePage/HomePage'
 import PostPage from './pages/PostPage/PostPage'
-=======
-import { Routes, Route } from "react-router-dom";
-import App from "./App";
-import HomePage from "../src/pages/HomePage/HomePage";
-import PostPage from "./pages/PostPage/PostPage";
->>>>>>> 0e2565a9cba63dcc48d8a5dcc632be204fef5f4a
 // import CreatedRollingListPage from "./pages/CreatedRollingListPage/CreatedRollingListPage";
 // import ListPage from "./pages/ListPage/ListPage";
 // import PostMessagePage from "./pages/PostMessagePage/PostMessagePage";

@@ -1,4 +1,4 @@
-@import '../../style/common.scss';
+@import "../../styles/common.scss";
 
 .background-opacity {
   display: flex;
@@ -26,8 +26,19 @@
     background-color: var(--white);
 
     .deleteModal-checkMessage {
-      @include font_bold_24;
-      color: var(--gray-700);
+      h2 {
+        @include font_bold_24;
+        color: var(--gray-500);
+        text-align: center;
+      }
+
+      div {
+        margin-top: 10px;
+        line-height: 18px;
+        @include font_regular_14;
+        color: var(--gray-400);
+        text-align: center;
+      }
     }
 
     .button-wrap {

@@ -1,4 +1,4 @@
-const BASE_URL = "https://rolling-api.vercel.app/10-100";
+const BASE_URL = "https://rolling-api.vercel.app/6-5";
 const IMG_URL = "https://rolling-api.vercel.app";
 
 async function GET(URL) {

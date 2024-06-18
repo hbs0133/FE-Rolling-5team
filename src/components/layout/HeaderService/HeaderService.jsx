@@ -6,13 +6,13 @@ import ExternalSharing from "./components/ExternalSharing";
 import ReactionSession from "./components/ReactionSession";
 import HeaderServiceStyles from "./HeaderService.module.scss";
 import useRecipientData from "../../../hooks/useRecipientReactionData";
-import useDeviceType from "../../../hooks/useDeviceType";
+import useDevice from "../../../hooks/useDevice";
 
 function HeaderService() {
   const { recipientData, handleSelectedEmoji } = useRecipientData();
   const { topReactions, reactions, userName, senderCount, recentMessages } =
     recipientData;
-  const deviceType = useDeviceType();
+  const { isDesktop } = useDevice();
 
   const isLoading = !userName;
 
@@ -23,7 +23,7 @@ function HeaderService() {
           To. {isLoading ? <Skeleton height={28} width={150} /> : userName}
         </h1>
         <div className={HeaderServiceStyles["service-wrapper"]}>
-          {deviceType === "desktop" && (
+          {isDesktop && (
             <>
               {/* {isLoading ? (
                 <Skeleton height={30} width={200} />

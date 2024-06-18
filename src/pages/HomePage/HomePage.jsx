@@ -15,9 +15,6 @@ function HomePage() {
               누구나 손쉽게, 온라인 <br className={HomeStyles.hideOnTablet} />
               롤링 페이퍼를 만들 수 있어요
             </h1>
-            <h1 className={HomeStyles.OnMobile}>
-              누구나 손쉽게, 온라인 롤링 페이퍼를 만 <br /> 들 수 있어요
-            </h1>
             <h2 className={HomeStyles.h2}>로그인 없이 자유롭게 만들어요.</h2>
           </div>
           <img
@@ -38,10 +35,6 @@ function HomePage() {
               서로에게 이모지로 감정을
               <br className={HomeStyles.hideOnTablet} /> 표현해보세요
             </h1>
-            <h1 className={HomeStyles.OnMobile}>
-              서로에게 이모지로 감정을
-              <br /> 표현해보세요
-            </h1>
             <h2 className={HomeStyles.h2}>
               롤링 페이퍼에 이모지를 추가할 수 있어요.
             </h2>
@@ -55,11 +48,11 @@ function HomePage() {
           />
         </section>
       </div>
-      <div className={HomeStyles.buttonContainer}>
-      <Link to="/post"><Button className={HomeStyles.button}>
-          구경해보기
-        </Button></Link>
-      </div>
+      <Link to="/post">
+        <div className={HomeStyles.buttonContainer}>
+          <Button className={HomeStyles.button}>구경해보기</Button>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 @import "../../styles/common.scss";
 
-@media (min-width:1200px){
+@media (min-width: 1200px) {
   .postpage {
-  max-width: 720px;
-  margin: 0 auto;
-}
+    max-width: 720px;
+    margin: 0 auto;
+  }
 }
 .label-input {
   display: flex;
@@ -77,6 +77,10 @@
   border: none;
   cursor: pointer;
 }
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 .color-wrapper {
   margin-top: 45px;
   margin-bottom: 69px;
@@ -85,11 +89,17 @@
   grid-template-columns: repeat(4, 1fr);
 }
 .color-button {
+  padding: 0;
+  line-height: 0;
   width: 100%;
-  height: 168px;
+  height: 100%;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .beige {
   background-color: var(--beige-200);
@@ -115,29 +125,47 @@
   gap: 16px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  height: auto;
 }
-.file-input {
-  display: flex;
-  align-items: center;
+.image-button {
+  padding: 0;
+  line-height: 0;
+  border: none;
+  background: none;
   cursor: pointer;
-  background-color: var(--gray-100);
+  display: block;
+  position: relative;
 }
-.custom-file-input {
-  display: none;
+.background-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 16px;
 }
-
-@media (min-width: 768px) and (max-width: 1199px){
-  .postpage{
-    width:100%;
-    padding:0 24px;
+.image-check {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.image-button.selected .background-image {
+  opacity: 0.7;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .postpage {
+    width: 100%;
+    padding: 0 24px;
   }
 }
-@media (min-width: 360px) and (max-width: 767px){
-  .postpage{
-    width:100%;
+@media (min-width: 360px) and (max-width: 767px) {
+  .postpage {
+    width: 100%;
     padding: 0 20px;
   }
-  .color-wrapper{
-    grid-template-columns: repeat(2,1fr);
+  .color-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-wrapper {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PostStyles from "./PostPage.module.scss";
 import Button from "../../components/UI/Button/Button";
-import check from "../../assets/images/cheack.svg";
+import check from "../../assets/images/check.svg";
 import { Link } from "react-router-dom";
 import ToggleButton from "./ToggleButton";
 import FileInPut from "./FileInPut";
+import { getUnsplashApi } from "../../services/api";
+import refresh_icon from "../../assets/images/refresh_icon.png";
+
+const UNSPLASH_ACCESS_KEY = "PxXlIIhqHg1pMTeViyHt7ScyMtz-bcPXMFq0AyHx8po";
 
 const PostPage = () => {
   const [isColorSelected, setIsColorSelected] = useState(true);
   const [selectedColor, setSelectedColor] = useState("beige");
   const [inputError, setInputError] = useState("");
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      const response = await getUnsplashApi(UNSPLASH_ACCESS_KEY);
+      setImages(response);
+      console.log(response);
+    } catch (error) {
+      console.error("Unsplash에서 이미지를 가져오는 중 오류 발생:", error);
+    }
+  };
 
   const handleBlur = (e) => {
     const name = e.target.value;
@@ -69,20 +88,32 @@ const PostPage = () => {
           컬러를 선택하거나, 이미지를 선택할 수 있습니다.
         </span>
       </div>
-      <ToggleButton isColorSelected={isColorSelected} onToggle={handleToggle} />
+      <div className={PostStyles["button-wrapper"]}>
+        <ToggleButton
+          isColorSelected={isColorSelected}
+          onToggle={handleToggle}
+        />
+        {isColorSelected === false && (
+          <button className={PostStyles["image-button"]} onClick={fetchImages}>
+            <img src={refresh_icon} alt="새로고침" width="30px" height="30px" />
+          </button>
+        )}
+      </div>
       {isColorSelected ? (
-        <ul className={PostStyles["color-wrapper"]}>
+        <div className={PostStyles["color-wrapper"]}>
           {["beige", "purple", "blue", "green"].map((colorName) =>
             renderColorButton(colorName)
           )}
-        </ul>
+        </div>
       ) : (
-        <FileInPut />
+        <FileInPut images={images} />
       )}
 
-      <Button className={PostStyles["created-button"]} disable={true}>
-        <Link to="post/{id}">생성하기</Link>
-      </Button>
+      <Link to="post/{id}">
+        <Button className={PostStyles["created-button"]} disable={!!inputError}>
+          생성하기
+        </Button>
+      </Link>
     </div>
   );
 };

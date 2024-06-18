@@ -93,6 +93,9 @@ a {
   .buttonContainer {
     margin: 72px auto 24px;
   }
+  .button {
+    width: 100%;
+  }
 }
 
 @media (min-width: 360px) and (max-width: 767px) {
@@ -144,5 +147,8 @@ a {
   }
   .buttonContainer {
     margin: 61px auto 24px;
+  }
+  .button {
+    width: 100%;
   }
 }

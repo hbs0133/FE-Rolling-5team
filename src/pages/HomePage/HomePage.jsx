@@ -1,14 +1,10 @@
 import HomeStyles from "./HomePage.module.scss";
 import { Link } from "react-router-dom";
 import homepage_01 from "../../assets/images/homepage_01.png";
-import homepage_mobile from "../../assets/images/homepage_mobile.png";
 import homepage_02 from "../../assets/images/homepage_02.png";
 import Button from "../../components/UI/Button/Button";
 
 function HomePage() {
-  const isTablet = window.innerWidth >= 768 && window.innerWidth <= 1199;
-  const isMobile = window.innerWidth < 768;
-
   return (
     <div className={HomeStyles.homepage}>
       <div className={HomeStyles["homepage-wrapper"]}>
@@ -60,9 +56,9 @@ function HomePage() {
         </section>
       </div>
       <div className={HomeStyles.buttonContainer}>
-        <Button className={HomeStyles.button} widthMax={isTablet || isMobile}>
-          <Link to="/post">구경해보기</Link>
-        </Button>
+      <Link to="/post"><Button className={HomeStyles.button}>
+          구경해보기
+        </Button></Link>
       </div>
     </div>
   );

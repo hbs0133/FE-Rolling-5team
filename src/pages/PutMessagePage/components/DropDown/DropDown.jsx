@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import dropDownStyles from "./DropDown.module.scss";
-import styles from "../../PostMessagePage.module.scss";
+import styles from "../../PutMessagePage.module.scss";
 import arrowIcon from "../../../../assets/icons/arrow_bottom.svg";
 
 const DropDown = ({ valueName, value, onChange, list }) => {

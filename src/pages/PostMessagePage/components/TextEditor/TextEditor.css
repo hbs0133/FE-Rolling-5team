@@ -16,3 +16,9 @@
 .ql-container em {
   font-style: italic;
 }
+.ql-container u {
+  text-decoration: underline;
+}
+.ql-container s {
+  text-decoration: line-through;
+}

@@ -1,74 +1,103 @@
 @import "../../styles/common.scss";
 
-.container {
-  padding: 40px;
-  width: 600px;
-  height: 476px;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
+.background-opacity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 
-  .profile-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 19px;
-    width: 100%;
-    border-bottom: 1px solid #eeeeee;
+  .container {
+    position: relative;
+    padding: 40px;
+    width: 600px;
+    height: 476px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
+    background-color: #fff;
 
-    & > div {
+    .close-btn {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      gap: 16px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
 
-      .profile-img {
-        width: 56px;
-        height: 56px;
-        border-radius: 100px;
-        border: 1px solid #eee;
-      }
+    .profile-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 19px;
+      width: 100%;
+      border-bottom: 1px solid #eeeeee;
 
-      .profile-name {
-        font-size: 20px;
+      & > div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
 
-        & > span {
-          font-weight: 700;
+        .profile-img {
+          width: 56px;
+          height: 56px;
+          border-radius: 100px;
+          border: 1px solid #eee;
+          object-fit: cover;
+        }
+
+        .profile-name {
+          font-size: 20px;
+
+          & > span {
+            font-weight: 700;
+          }
         }
       }
 
-      .profile-relation {
-        display: inline-block;
-        margin-top: 6px;
-        padding: 0 8px;
-        border-radius: 4px;
+      .date {
         @include font_regular_14;
-        line-height: 20px;
+        color: var(--gray-400);
         letter-spacing: -0.5%;
-        color: var(--purple-600);
-        background-color: var(--purple-100);
       }
     }
 
-    .date {
-      @include font_regular_14;
-      color: var(--gray-400);
-      letter-spacing: -0.5%;
+    .description {
+      padding-top: 16px;
+      height: 256px;
+      overflow-y: scroll;
+      @include font_regular_18;
+      line-height: 28px;
+      letter-spacing: -1%;
+      color: #5a5a5a;
     }
-  }
 
-  .description {
-    padding-top: 16px;
-    height: 256px;
-    overflow-y: scroll;
-    @include font_regular_18;
-    line-height: 28px;
-    letter-spacing: -1%;
-    color: #5a5a5a;
-  }
+    .button-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
 
-  .check-Button {
-    display: flex;
-    justify-content: center;
-    margin-top: 24px;
+      .font-color {
+        background-color: var(--error-red);
+
+        &:hover {
+          background-color: #b32121;
+        }
+      }
+    }
   }
 }

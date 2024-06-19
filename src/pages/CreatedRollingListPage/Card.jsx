@@ -1,54 +1,42 @@
 import { useState } from "react";
 import CardStyles from "./Card.module.scss";
-import deleteIcon from "../../assets/icons/delete_ic.svg";
-import plusEnabledIcon from "../../assets/icons/plusbtn_enabled_ic.svg";
+import Badge from "./Badge";
 
-const Card = () => {
-  const [disabled, setDisabled] = useState(false);
+const Card = ({ recentMessages, key, setIsModal }) => {
+  const handleCardClick = () => {
+    setIsModal((prev) => ({
+      ...prev,
+      isModal: true,
+      modalId: recentMessages.id,
+    }));
+  };
+
   return (
     <>
-      <div className={CardStyles.container}>
+      <div className={CardStyles.container} key={key} onClick={handleCardClick}>
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img
-              src="#"
+              src={recentMessages.profileImageURL}
               alt="프로필이미지"
               className={CardStyles["profile-img"]}
             />
             <div>
               <h2 className={CardStyles["profile-name"]}>
-                From. <span>김당찬</span>
+                From. <span>{recentMessages.sender}</span>
               </h2>
-              <div className={CardStyles["profile-relation"]}>동료</div>
+              <Badge>{recentMessages.relationship}</Badge>
             </div>
           </div>
-          <button type="button" className={CardStyles["delete-btn"]}>
-            <img src={deleteIcon} alt="삭제버튼" />
-          </button>
         </div>
-        <p className={CardStyles.description}>
-          안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까
-          고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요
-          안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까
-          고기반찬 주세요안녕하십니까 고기반찬 주세요안녕하십니까 고기반찬
-          주세요
-        </p>
-        <div className={CardStyles.date}>2020.02.20</div>
-      </div>
-      <div className={CardStyles.container}>
-        <button
-          type="button"
-          disabled={disabled}
-          className={CardStyles["create-btn"]}
-        >
-          <img src={plusEnabledIcon} alt="카드생성아이콘" />
-        </button>
+        <p
+          className={CardStyles.description}
+          dangerouslySetInnerHTML={{ __html: recentMessages.content }}
+          style={{ fontFamily: recentMessages.font }}
+        ></p>
+        <div className={CardStyles.date}>
+          {recentMessages.createdAt.replace(/-/g, ".").split("T")[0]}
+        </div>
       </div>
     </>
   );

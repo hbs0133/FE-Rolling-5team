@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import dropDownStyles from "./DropDown.module.scss";
+import styles from "../../PostMessagePage.module.scss";
 import arrowIcon from "../../../../assets/icons/arrow_bottom.svg";
 
 const DropDown = ({ valueName, value, onChange, list }) => {
@@ -38,6 +39,21 @@ const DropDown = ({ valueName, value, onChange, list }) => {
     };
   }, [dropDownVisibility]);
 
+  const getFontFamily = (font) => {
+    if (font === "Pretendard") {
+      return null;
+    }
+    if (font === "에스코어 드림") {
+      return "sCoreDream";
+    }
+    if (font === "온글잎 주리손편지") {
+      return "Ownglyph";
+    }
+    if (font === "망고보드 별별체") {
+      return "mangoByeolbyeol";
+    }
+  };
+
   return (
     <div className={dropDownStyles["drop-down"]} ref={dropdownRef}>
       <button
@@ -45,7 +61,7 @@ const DropDown = ({ valueName, value, onChange, list }) => {
         onClick={(e) => setDropDownVisibility(!dropDownVisibility)}
         className={`${dropDownStyles["drop-down-button"]} ${
           dropDownVisibility && dropDownStyles.open
-        }`}
+        } ${styles[`${getFontFamily(value)}`]}`}
       >
         {value}
         <img
@@ -68,7 +84,11 @@ const DropDown = ({ valueName, value, onChange, list }) => {
         >
           <ul>
             {list.map((item, index) => (
-              <li key={index} onClick={() => handleChange(item)}>
+              <li
+                className={styles[`${getFontFamily(item)}`]}
+                key={index}
+                onClick={() => handleChange(item)}
+              >
                 {item}
               </li>
             ))}

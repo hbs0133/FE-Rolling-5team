@@ -15,7 +15,7 @@ async function GET(URL) {
   }
 }
 
-export async function getRecipientList({ limit = 4, sort = "" } = {}) {
+export async function getRecipientList({ limit = 10, sort = "" } = {}) {
   return await GET(`${BASE_URL}/recipients/?limit=${limit}&sort=${sort}`);
 }
 
@@ -32,6 +32,21 @@ export async function getReactionList({
   return await GET(
     `${BASE_URL}/recipients/${id}/reactions/?limit=${limit}&offset=${offset}&sort=${sort}`
   );
+}
+
+export async function getRecipientIdList({
+  limit = 1,
+  sort = "",
+  id = null,
+  isReactions = false,
+  offset = 0,
+} = {}) {
+  let url = `${BASE_URL}/recipients/`;
+
+  url += id ? (isReactions ? `${id}/reactions/` : `${id}/`) : "";
+  url += `?limit=${limit}&offset=${offset}&sort=${sort}`;
+
+  return await GET(url);
 }
 
 export async function postReaction({
@@ -56,8 +71,8 @@ export async function postReaction({
   return await response.json();
 }
 
-export const postMessage = async (formData) => {
-  const response = await fetch(`${BASE_URL}/recipients/7890/messages/`, {
+export const postMessage = async (formData, id) => {
+  const response = await fetch(`${BASE_URL}/recipients/${id}/messages/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -70,6 +85,16 @@ export const postMessage = async (formData) => {
   const body = await response.json();
   return body;
 };
+
+export async function getRecipientRollingPaper({ id = 0 }) {
+  return await GET(`${BASE_URL}/recipients/${id}/`);
+}
+
+export async function getRecipientMessages({ id = 0, limit = 8, offset = 0 }) {
+  return await GET(
+    `${BASE_URL}/recipients/${id}/messages/?limit=${limit}&offset=${offset}`
+  );
+}
 
 export const getUnsplashApi = async (UNSPLASH_ACCESS_KEY) => {
   return await GET(
@@ -84,11 +109,7 @@ export async function postRecipients(formData) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        recipientName: formData.recipientName,
-        selectedColor: formData.selectedColor,
-        images: formData.images,
-      }),
+      body: JSON.stringify(formData),
     });
 
     if (!response.ok) {

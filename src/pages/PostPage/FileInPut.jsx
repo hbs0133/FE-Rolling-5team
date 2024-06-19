@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostStyles from "./PostPage.module.scss";
 import check from "../../assets/images/check.svg";
 
-const FileInPut = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(0);
-
+const FileInPut = ({ images, selectedImage, setSelectedImage }) => {
   const handleImageClick = (index) => {
     setSelectedImage(index);
   };
@@ -14,6 +12,8 @@ const FileInPut = ({ images }) => {
       <ul className={PostStyles["image-wrapper"]}>
         {images.map((image, index) => (
           <button
+            type="button"
+            key={image.id}
             className={`${PostStyles["image-button"]} ${
               selectedImage === index ? PostStyles.selected : ""
             }`}

@@ -48,7 +48,6 @@ function HomePage() {
           />
         </section>
       </div>
-
       <Link to="/post">
         <div className={HomeStyles.buttonContainer}>
           <Button id={HomeStyles.button}>구경해보기</Button>

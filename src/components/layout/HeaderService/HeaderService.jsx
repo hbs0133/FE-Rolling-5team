@@ -1,68 +1,49 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import CumulativeUsers from "./components/CumulativeUsers";
 import ExternalSharing from "./components/ExternalSharing";
 import ReactionSession from "./components/ReactionSession";
 import HeaderServiceStyles from "./HeaderService.module.scss";
-import { getReactionList, getRecipientList } from "../../../services/api";
+import useRecipientData from "../../../hooks/useRecipientReactionData";
+import useDevice from "../../../hooks/useDevice";
 
 function HeaderService() {
-  // 해당 페이지의 id 얻기
-  // const { recipientId } = useParams();
-
-  // 임시 페이지 id 할당
-  const recipientId = 7889;
-
-  // 데이터 관리를 위한 객체
-  const [recipientData, setRecipientData] = useState({
-    topReactions: [],
-    reactions: [],
-    userName: "",
-    senderCount: 0,
-    recentMessages: [],
-  });
-
-  const fetchData = async () => {
-    try {
-      const recipient = await getRecipientList();
-      const reaction = await getReactionList({ id: recipientId });
-
-      // recipientId에 해당하는 객체 찾기
-      const foundRecipient = recipient.results.find(
-        (r) => r.id === recipientId
-      );
-
-      setRecipientData({
-        topReactions: foundRecipient.topReactions,
-        userName: foundRecipient.name,
-        senderCount: foundRecipient.messageCount,
-        recentMessages: foundRecipient.recentMessages,
-        reactions: reaction.results,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const { recipientData, handleSelectedEmoji } = useRecipientData();
   const { topReactions, reactions, userName, senderCount, recentMessages } =
     recipientData;
+  const { isDesktop } = useDevice();
+
+  const isLoading = !userName;
 
   return (
     <div className={HeaderServiceStyles.main}>
       <div className={HeaderServiceStyles["header-service"]}>
-        <h1 className={HeaderServiceStyles["user-name"]}>To. {userName}</h1>
+        <h1 className={HeaderServiceStyles["user-name"]}>
+          To. {isLoading ? <Skeleton height={28} width={150} /> : userName}
+        </h1>
         <div className={HeaderServiceStyles["service-wrapper"]}>
-          <CumulativeUsers
-            senderCount={senderCount}
-            recentMessages={recentMessages}
+          {isDesktop && (
+            <>
+              {/* {isLoading ? (
+                <Skeleton height={30} width={200} />
+              ) : ( */}
+              <CumulativeUsers
+                senderCount={senderCount}
+                recentMessages={recentMessages}
+              />
+              {/* )} */}
+              <div
+                className={`${HeaderServiceStyles["vertical-divider"]} ${HeaderServiceStyles["first-line"]}`}
+              ></div>
+            </>
+          )}{" "}
+          <ReactionSession
+            topReactions={topReactions}
+            reactions={reactions}
+            onSelectedEmoji={handleSelectedEmoji}
+            isLoading={isLoading}
           />
-          <div
-            className={`${HeaderServiceStyles["vertical-divider"]} ${HeaderServiceStyles["first-line"]}`}
-          ></div>
-          <ReactionSession topReactions={topReactions} reactions={reactions} />
           <div
             className={`${HeaderServiceStyles["vertical-divider"]} ${HeaderServiceStyles["second-line"]}`}
           ></div>

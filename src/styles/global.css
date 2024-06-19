@@ -1,4 +1,21 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Ownglyph_jooreeletter-Rg";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_jooreeletter-Rg.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "MangoByeolbyeol";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoByeolbyeol.woff2")
+    format("woff2");
+}
 
 body {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
@@ -55,6 +72,36 @@ body {
   /*etc colors*/
   --white: #ffffff;
   --black: #000000;
-  --error-red: #dc3a3a;
+  --error-red: #d83232;
   --surface: #f6f8ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Reset Styles */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
 }

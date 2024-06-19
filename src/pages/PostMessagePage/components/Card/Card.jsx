@@ -1,9 +1,9 @@
 import CardStyles from "./Card.module.scss";
 import Badge from "./Badge";
+import "./quill.css";
 
 const Card = ({ message }) => {
   const { sender, profileImageURL, relationship, content, font } = message;
-  console.log("메시지", message);
 
   const getFormattedDate = () => {
     const today = new Date();
@@ -13,13 +13,26 @@ const Card = ({ message }) => {
     return `${year}.${month}.${day}`;
   };
 
+  const getFontFamily = (font) => {
+    let fontFamily;
+    if (font === "Pretendard") {
+      fontFamily = null;
+    }
+    if (font === "에스코어 드림") {
+      fontFamily = "sCoreDream";
+    }
+    if (font === "온글잎 주리손편지") {
+      fontFamily = "Ownglyph";
+    }
+    if (font === "망고보드 별별체") {
+      fontFamily = "mangoByeolbyeol";
+    }
+    return fontFamily;
+  };
+
   return (
     <>
-      <div
-        className={`${CardStyles.container} ${
-          sender && content && CardStyles.validAnimation
-        }`}
-      >
+      <div className={`${CardStyles.container}`}>
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img
@@ -33,36 +46,20 @@ const Card = ({ message }) => {
                   !sender && CardStyles["invalid"]
                 }`}
               >
-                From.{" "}
-                {sender ? (
-                  <span>{sender}</span>
-                ) : (
-                  <span className={CardStyles["invalid"]}>
-                    From.이 없어요 값을 입력해주세요!
-                  </span>
-                )}
+                From. <span>{sender}</span>
               </h2>
               <Badge>{relationship}</Badge>
             </div>
           </div>
         </div>
-        {content ? (
-          <p
-            className={CardStyles.description}
-            dangerouslySetInnerHTML={{ __html: content }}
-            style={{ fontFamily: font }}
-          ></p>
-        ) : (
-          <p className={`${CardStyles.description} ${CardStyles["invalid"]}`}>
-            내용이 없어요 값을 입력해주세요!
-          </p>
-        )}
-
+        <p
+          className={`${CardStyles.description} ${
+            CardStyles[getFontFamily(font)]
+          }`}
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></p>
         <div className={CardStyles.date}>{getFormattedDate()}</div>
       </div>
-      {sender && content && (
-        <div className={CardStyles.valid}>생성이 가능합니다 !</div>
-      )}
     </>
   );
 };

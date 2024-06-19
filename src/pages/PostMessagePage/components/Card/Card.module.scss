@@ -8,7 +8,6 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
   background-color: #fff;
   transform: scale(1);
-  transition: 0.3s;
   margin: 0 auto;
   .profile-wrap {
     display: flex;
@@ -38,16 +37,8 @@
         text-overflow: ellipsis;
         overflow: hidden;
         @include font_regular_20;
-        &.invalid {
-          width: 300px;
-        }
         & > span {
           @include font_bold_20;
-        }
-        & > .invalid {
-          color: var(--error-red);
-          @include font-bold-15;
-          animation: blink 1.3s infinite ease-in-out;
         }
       }
     }
@@ -77,37 +68,15 @@
   }
 }
 
-.valid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-  color: var(--purple-600);
-  @include font-bold-20;
-  animation: blink 2s infinite ease-in-out;
+.sCoreDream {
+  font-family: "S-CoreDream-3Light";
 }
-.validAnimation {
-  animation: bounce 2s infinite ease-in-out;
+.mangoByeolbyeol {
+  font-family: "MangoByeolbyeol";
 }
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
+.Ownglyph {
+  font-family: "Ownglyph_jooreeletter-Rg";
+  font-size: 22px;
 }
 
 // @media screen and (min-width: 1248px) {

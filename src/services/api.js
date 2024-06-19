@@ -123,3 +123,27 @@ export async function postRecipients(formData) {
     throw new Error(`메시지 생성에 실패했습니다: ${error.message}`);
   }
 }
+
+export async function deleteMessage(id) {
+  const response = await fetch(`${BASE_URL}/messages/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the message");
+  }
+
+  return response;
+}
+
+export async function deleteRollingPaper(id) {
+  const response = await fetch(`${BASE_URL}/recipients/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the recipient");
+  }
+
+  return response;
+}

@@ -1,11 +1,22 @@
 import DeleteModalStyles from "./DeleteModal.module.scss";
 
-const DeleteModal = ({ name, title, setIsModal, setIsDeleteModal, key }) => {
+const DeleteModal = ({
+  name,
+  title,
+  id,
+  setIsModal,
+  setIsDeleteModal,
+  deleteFunction,
+  ...rest
+}) => {
   const handleCheckBtnClick = () => {
+    deleteFunction(id);
+
     setIsDeleteModal((prev) => ({
       ...prev,
       isModal: false,
-      modalId: 0,
+      rollingCardModalId: 0,
+      rollingRecentMessagesId: 0,
     }));
 
     setIsModal((prev) => ({
@@ -18,15 +29,18 @@ const DeleteModal = ({ name, title, setIsModal, setIsDeleteModal, key }) => {
     setIsDeleteModal((prev) => ({
       ...prev,
       isModal: false,
-      modalId: 0,
+      rollingCardModalId: 0,
+      rollingRecentMessagesId: 0,
     }));
   };
   return (
-    <div className={DeleteModalStyles["background-opacity"]} key={key}>
+    <div {...rest} className={DeleteModalStyles["background-opacity"]}>
       <div className={DeleteModalStyles["deleteModal-container"]}>
         <div className={DeleteModalStyles["deleteModal-checkMessage"]}>
           <h2>
-            {name}님의 {title} 삭제
+            {name}님의
+            <br />
+            {title} 삭제
           </h2>
           <div>
             삭제하면 복구할 수 없습니다. <br />

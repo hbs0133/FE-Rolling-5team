@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postMessage } from "../../../../services/api.js";
 import styles from "../../PostMessagePage.module.scss";
@@ -8,7 +8,8 @@ import ProfileImageInput from "../ProfileImageInput/ProfileImageInput";
 import DropDown from "../DropDown/DropDown.jsx";
 import TextEditor from "../TextEditor/TextEditor";
 import Button from "../../../../components/UI/Button/Button";
-import Card from "../Card/Card.jsx";
+import Card from "../PreviewCard/PreviewCard.jsx";
+import Modal from "../Modal/Modal.jsx";
 
 const INITIAL_TEAM = "7-5";
 
@@ -22,11 +23,16 @@ const INITIAL_VALUES = {
   profileImageURL: INITIAL_PROFILEIMAGEURL,
   relationship: "지인",
   content: "",
-  font: "Noto Sans",
+  font: "Pretendard",
 };
 
 const relationshipList = ["친구", "지인", "동료", "가족"];
-const fontList = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
+const fontList = [
+  "Pretendard",
+  "에스코어 드림",
+  "망고보드 별별체",
+  "온글잎 주리손편지",
+];
 
 const PostMessageForm = ({ id }) => {
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -43,10 +49,13 @@ const PostMessageForm = ({ id }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleChange("recipientId", id);
+    console.log(values);
     try {
       setIsSubmitting(true);
-      await postMessage(values);
+      await postMessage(
+        { ...values, recipientId: Number(values.recipientId) },
+        id
+      );
     } catch (error) {
       setSubmittingError(error);
       return;
@@ -56,6 +65,10 @@ const PostMessageForm = ({ id }) => {
     setValues(INITIAL_VALUES);
     navigate(`/post/${id}`);
   };
+
+  useEffect(() => {
+    handleChange("recipientId", id);
+  }, [id]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -116,7 +129,7 @@ const PostMessageForm = ({ id }) => {
         label={"메시지 미리보기"}
         inputElement={<Card message={values} />}
       />
-      <Button
+      {/* <Button
         widthMax={true}
         disable={
           values.sender && values.content && !isSubmitting ? false : true
@@ -124,7 +137,12 @@ const PostMessageForm = ({ id }) => {
         className={styles.button}
       >
         {"생성하기"}
-      </Button>
+      </Button> */}
+      <Modal
+        value={values}
+        isSubmitting={isSubmitting}
+        onSubmit={handleSubmit}
+      />
       {submittingError?.message && <div>{setIsSubmitting.message}</div>}
     </form>
   );

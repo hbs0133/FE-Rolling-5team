@@ -1,6 +1,7 @@
-import CardStyles from "./Card.module.scss";
+import CardStyles from "./PreviewCard.module.scss";
 import Badge from "./Badge";
 import "./quill.css";
+import { useEffect } from "react";
 
 const Card = ({ message }) => {
   const { sender, profileImageURL, relationship, content, font } = message;
@@ -30,9 +31,16 @@ const Card = ({ message }) => {
     return fontFamily;
   };
 
+  useEffect(() => {
+    getFontFamily(font);
+  }, [font]);
   return (
     <>
-      <div className={`${CardStyles.container}`}>
+      <div
+        className={`${CardStyles.container} ${
+          sender && content && CardStyles.validAnimation
+        }`}
+      >
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img
@@ -46,20 +54,37 @@ const Card = ({ message }) => {
                   !sender && CardStyles["invalid"]
                 }`}
               >
-                From. <span>{sender}</span>
+                From.{" "}
+                {sender ? (
+                  <span>{sender}</span>
+                ) : (
+                  <span className={CardStyles["invalid"]}>
+                    From.을 입력해주세요!
+                  </span>
+                )}
               </h2>
               <Badge>{relationship}</Badge>
             </div>
           </div>
         </div>
-        <p
-          className={`${CardStyles.description} ${
-            CardStyles[getFontFamily(font)]
-          }`}
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></p>
+        {content ? (
+          <p
+            className={`${CardStyles.description} ${
+              CardStyles[getFontFamily(font)]
+            }`}
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></p>
+        ) : (
+          <p className={`${CardStyles.description} ${CardStyles["invalid"]}`}>
+            내용을 입력해주세요!
+          </p>
+        )}
+
         <div className={CardStyles.date}>{getFormattedDate()}</div>
       </div>
+      {sender && content && (
+        <div className={CardStyles.valid}>생성이 가능합니다 !</div>
+      )}
     </>
   );
 };

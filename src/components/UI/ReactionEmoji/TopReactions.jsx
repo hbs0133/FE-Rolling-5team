@@ -29,8 +29,10 @@ function TopReactions({
           className={ReactionEmojiStyles["emoji-button"]}
           onClick={() => handleEmojiSelect(id, emoji)}
         >
-          <span className={ReactionEmojiStyles["emoji"]}>{emoji} </span>
-          <span className={ReactionEmojiStyles["emoji"]}>{count}</span>
+          <span className={ReactionEmojiStyles["emoji-both"]}>
+            <span className={ReactionEmojiStyles["emoji"]}>{emoji} </span>
+            <span className={ReactionEmojiStyles["emoji"]}>{count}</span>
+          </span>
         </span>
       ))}
     </div>

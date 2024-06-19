@@ -3,22 +3,21 @@ import AddReactionDropdownStyles from "./AddReactionDropdown.module.scss";
 import addEmojiImage from "../../../../assets/icons/ic_add-emoji.svg";
 import emojiData from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import useDeviceType from "../../../../hooks/useDeviceType";
+import useDevice from "../../../../hooks/useDevice";
 
 export function AddReactionDropdown({ onSelectedEmoji = () => {} }) {
   const handleEmojiSelect = (emoji) => {
     onSelectedEmoji(emoji);
-    console.log(emoji);
   };
 
-  const deviceType = useDeviceType();
+  const { mobile } = useDevice();
 
   return (
     <Dropdown
       trigger={
         <div className={AddReactionDropdownStyles["add-container"]}>
           <img src={addEmojiImage} alt="이모지 추가" />
-          {deviceType !== "mobile" && <span>추가</span>}
+          {!mobile && <span>추가</span>}
         </div>
       }
       triggerClassName={`${AddReactionDropdownStyles.trigger}`}

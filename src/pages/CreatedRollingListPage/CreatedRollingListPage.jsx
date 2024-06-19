@@ -62,8 +62,6 @@ const CreatedRollingListPage = () => {
     ],
   });
 
-  //GPT
-  const [page, setPage] = useState(0); // 페이지 상태 추가
   const [isFetching, setIsFetching] = useState(false);
 
   const [isModal, setIsModal] = useState({
@@ -162,9 +160,9 @@ const CreatedRollingListPage = () => {
     <div
       className={ListStyles["background-container"]}
       style={
-        rollingCard.backgroundImageURL === null
-          ? { backgroundColor: rollingCard.backgroundColor }
-          : { backgroundImage: `url(${rollingCard.backgroundImageURL})` }
+        rollingCard.backgroundImageURL
+          ? { backgroundImage: `url(${rollingCard.backgroundImageURL})` }
+          : { backgroundColor: `var(--${rollingCard.backgroundColor}-200)` }
       }
     >
       <div className={ListStyles["list-container"]}>

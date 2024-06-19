@@ -96,6 +96,34 @@ export async function getRecipientMessages({ id = 0, limit = 8, offset = 0 }) {
   );
 }
 
+export const getUnsplashApi = async (UNSPLASH_ACCESS_KEY) => {
+  return await GET(
+    `https://api.unsplash.com/photos/random?count=4&client_id=${UNSPLASH_ACCESS_KEY}`
+  );
+};
+
+export async function postRecipients(formData) {
+  try {
+    const response = await fetch(`${BASE_URL}/recipients/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`메시지 생성에 실패했습니다: ${errorMessage}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(`메시지 생성에 실패했습니다: ${error.message}`);
+  }
+}
+
 export async function deleteMessage(id) {
   const response = await fetch(`${BASE_URL}/messages/${id}/`, {
     method: "DELETE",

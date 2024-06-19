@@ -11,10 +11,9 @@ function Main() {
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
-        <Route path="post" element={<PostPage />} />
         <Route path="list" element={<ListPage />} />
         <Route path="post">
-          <Route index element={<CreatedRollingListPage />} />
+          <Route index element={<PostPage />} />
           <Route path=":id" element={<CreatedRollingListPage />} />
           <Route path=":id/message" element={<PostMessagePage />} />
         </Route>

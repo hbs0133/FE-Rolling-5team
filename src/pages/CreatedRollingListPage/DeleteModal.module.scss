@@ -20,18 +20,20 @@
     align-items: center;
     gap: 30px;
     padding: 50px;
-    width: 400px;
     height: 200px;
     border-radius: 20px;
     background-color: var(--white);
-    overflow: hidden;
 
     .deleteModal-checkMessage {
       h2 {
+        width: 300px;
         @include font_bold_24;
         color: var(--gray-500);
         text-align: center;
         line-height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       div {
@@ -80,5 +82,23 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 1248px) {
+  .deleteModal-container {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1247px) {
+  .deleteModal-container {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .deleteModal-container {
+    width: 330px;
   }
 }

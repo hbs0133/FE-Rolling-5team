@@ -10,7 +10,7 @@ import TextEditor from "../TextEditor/TextEditor";
 import Button from "../../../../components/UI/Button/Button";
 import Card from "../Card/Card.jsx";
 
-const INITIAL_TEAM = "10-100";
+const INITIAL_TEAM = "7-5";
 
 const INITIAL_PROFILEIMAGEURL =
   "https://firebasestorage.googleapis.com/v0/b/fe-rolling-5team.appspot.com/o/files%2FFrame%202593.jpg?alt=media&token=c03d4b94-79e3-43d3-be7f-79409a51248d";

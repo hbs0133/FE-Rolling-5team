@@ -1,4 +1,4 @@
-const BASE_URL = "https://rolling-api.vercel.app/6-5";
+const BASE_URL = "https://rolling-api.vercel.app/7-5";
 const IMG_URL = "https://rolling-api.vercel.app";
 
 async function GET(URL) {
@@ -32,6 +32,21 @@ export async function getReactionList({
   return await GET(
     `${BASE_URL}/recipients/${id}/reactions/?limit=${limit}&offset=${offset}&sort=${sort}`
   );
+}
+
+export async function getRecipientIdList({
+  limit = 1,
+  sort = "",
+  id = null,
+  isReactions = false,
+  offset = 0,
+} = {}) {
+  let url = `${BASE_URL}/recipients/`;
+
+  url += id ? (isReactions ? `${id}/reactions/` : `${id}/`) : "";
+  url += `?limit=${limit}&offset=${offset}&sort=${sort}`;
+
+  return await GET(url);
 }
 
 export async function postReaction({
@@ -79,4 +94,28 @@ export async function getRecipientMessages({ id = 0, limit = 8, offset = 0 }) {
   return await GET(
     `${BASE_URL}/recipients/${id}/messages/?limit=${limit}&offset=${offset}`
   );
+}
+
+export async function deleteMessage(id) {
+  const response = await fetch(`${BASE_URL}/messages/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the message");
+  }
+
+  return response;
+}
+
+export async function deleteRollingPaper(id) {
+  const response = await fetch(`${BASE_URL}/recipients/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the recipient");
+  }
+
+  return response;
 }

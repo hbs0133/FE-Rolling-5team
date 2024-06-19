@@ -54,34 +54,52 @@
       input[type="file"] {
         display: none;
       }
-      .profile-preview {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        cursor: pointer;
-        .profile-preview-image {
+      .profile-preview-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        .profile-preview {
+          position: relative;
           width: 80px;
           height: 80px;
-          border-radius: 100px;
-          object-fit: cover;
-          box-shadow: 3px 3px 5px var(--gray-300);
-        }
-        .profile-image-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          bottom: -5px;
-          right: -5px;
-          width: 30px;
-          height: 30px;
-          border: none;
-          border-radius: 9999px;
-          font-size: 24px;
-          color: var(--white);
-          background-color: var(--gray-500);
-          z-index: 1;
           cursor: pointer;
+          .profile-preview-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 100px;
+            object-fit: cover;
+            box-shadow: 1px 1px 5px var(--gray-300);
+          }
+          .profile-image-button {
+            position: absolute;
+            bottom: -10px;
+            right: -3px;
+            z-index: 1;
+            cursor: pointer;
+            img {
+              width: 30px;
+            }
+          }
+        }
+        .profile-image-pickker-container {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          p {
+            color: var(--gray-500);
+            @include font-regular-16;
+          }
+          .profile-image-pickker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            img {
+              width: 70px;
+              &:hover {
+                scale: (1.2);
+              }
+            }
+          }
         }
       }
     }
@@ -89,4 +107,16 @@
       margin-bottom: 60px;
     }
   }
+}
+
+.sCoreDream {
+  font-family: "S-CoreDream-3Light";
+}
+.mangoByeolbyeol {
+  font-family: "MangoByeolbyeol";
+}
+
+.Ownglyph {
+  font-family: "Ownglyph_jooreeletter-Rg";
+  font-size: 22px;
 }

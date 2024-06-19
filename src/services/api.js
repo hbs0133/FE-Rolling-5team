@@ -71,8 +71,8 @@ export async function postReaction({
   return await response.json();
 }
 
-export const postMessage = async (formData) => {
-  const response = await fetch(`${BASE_URL}/recipients/7890/messages/`, {
+export const postMessage = async (formData, id) => {
+  const response = await fetch(`${BASE_URL}/recipients/${id}/messages/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

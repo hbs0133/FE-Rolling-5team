@@ -27,7 +27,7 @@ const TextEditor = ({ valueName, onChange }) => {
     return {
       toolbar: {
         container: [
-          // [{ size: ["small", false, "large", "huge"] }],
+          [{ size: ["small", false, "large", "huge"] }],
           // [{ align: [] }],
           ["bold", "italic", "underline", "strike"],
           // [{ list: "ordered" }, { list: "bullet" }],

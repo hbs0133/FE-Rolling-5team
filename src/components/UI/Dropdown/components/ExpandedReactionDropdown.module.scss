@@ -13,3 +13,28 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 10px 8px;
 }
+
+.emoji-empty-container {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 14px;
+  cursor: default;
+}
+
+.arrow-image {
+  transition: transform 0.3s ease;
+}
+
+.flipped {
+  transform: rotate(180deg);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .emoji-container {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 8px;
+  }
+}

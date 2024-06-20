@@ -15,7 +15,6 @@ function Header() {
     isListPage: false,
     isCreateRollingPage: false,
     isCreatedRollingListPage: false,
-    isEditPage: false,
     isPostMessagePage: false,
   });
 
@@ -25,7 +24,6 @@ function Header() {
       isListPage: location.pathname === "/list",
       isCreateRollingPage: location.pathname === "/post",
       isCreatedRollingListPage: location.pathname === `/post/${id}`,
-      isEditPage: location.pathname === `/post/${id}/edit`,
       isPostMessagePage: location.pathname === `/post/${id}/message`,
     });
   }, [location, id]);
@@ -38,9 +36,7 @@ function Header() {
           {(isPage.isHomePage || isPage.isListPage) && <CreateRollingPaper />}
         </div>
       </header>
-      {(isPage.isCreatedRollingListPage || isPage.isEditPage) && (
-        <HeaderService />
-      )}
+      {isPage.isCreatedRollingListPage && <HeaderService />}
     </>
   );
 }

@@ -32,7 +32,11 @@ const Card = ({ recentMessages, setIsModal, ...rest }) => {
         <p
           className={CardStyles.description}
           dangerouslySetInnerHTML={{ __html: recentMessages.content }}
-          style={{ fontFamily: recentMessages.font }}
+          style={
+            recentMessages.font === "나눔손글씨 손편지체"
+              ? { fontFamily: "Handletter" }
+              : { fontFamily: recentMessages.font }
+          }
         ></p>
         <div className={CardStyles.date}>
           {recentMessages.createdAt.replace(/-/g, ".").split("T")[0]}

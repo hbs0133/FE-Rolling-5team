@@ -2,7 +2,7 @@ import { useState } from "react";
 import CardStyles from "./Card.module.scss";
 import Badge from "./Badge";
 
-const Card = ({ recentMessages, key, setIsModal }) => {
+const Card = ({ recentMessages, setIsModal, ...rest }) => {
   const handleCardClick = () => {
     setIsModal((prev) => ({
       ...prev,
@@ -13,7 +13,7 @@ const Card = ({ recentMessages, key, setIsModal }) => {
 
   return (
     <>
-      <div className={CardStyles.container} key={key} onClick={handleCardClick}>
+      <div {...rest} className={CardStyles.container} onClick={handleCardClick}>
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img

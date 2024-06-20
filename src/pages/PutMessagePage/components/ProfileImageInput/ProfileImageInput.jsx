@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import styles from "../../PostMessagePage.module.scss";
+import styles from "../../PutMessagePage.module.scss";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from "../../../../services/firebase";
 import plusIcon from "../../../../assets/icons/icon_plus.svg";

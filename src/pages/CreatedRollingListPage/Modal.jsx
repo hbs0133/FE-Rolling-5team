@@ -4,7 +4,7 @@ import Button from "../../components/UI/Button/Button";
 import Badge from "./Badge";
 import closeIcon from "../../assets/icons/close_icon.svg";
 
-const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, key }) => {
+const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
   const handleCheckClick = () => {
     setIsModal((prev) => ({
       ...prev,
@@ -16,12 +16,12 @@ const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, key }) => {
     setIsDeleteModal((prev) => ({
       ...prev,
       isModal: false,
-      modalId: recentMessages.id,
+      rollingRecentMessagesId: recentMessages.id,
     }));
   };
 
   return (
-    <div className={ModalStyles["background-opacity"]} key={key}>
+    <div {...rest} className={ModalStyles["background-opacity"]}>
       <div className={ModalStyles.container}>
         <button onClick={handleCheckClick} className={ModalStyles["close-btn"]}>
           <img src={closeIcon} alt="닫기버튼" />

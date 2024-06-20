@@ -5,6 +5,7 @@ import PostPage from "./pages/PostPage/PostPage";
 import CreatedRollingListPage from "./pages/CreatedRollingListPage/CreatedRollingListPage";
 import ListPage from "./pages/ListPage/ListPage";
 import PostMessagePage from "./pages/PostMessagePage/PostMessagePage";
+import PutMessagePage from "./pages/PutMessagePage/PutMessagePage";
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
           <Route path=":id" element={<CreatedRollingListPage />} />
           <Route path=":id/message" element={<PostMessagePage />} />
         </Route>
+        <Route path="/put/:id/" element={<PutMessagePage />} />
       </Route>
     </Routes>
   );

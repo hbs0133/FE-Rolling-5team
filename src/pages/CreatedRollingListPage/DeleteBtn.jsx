@@ -1,9 +1,9 @@
-import DeleteStyles from './DeleteBtn.module.scss';
+import DeleteStyles from "./DeleteBtn.module.scss";
 
-const DeleteBtn = () => {
+const DeleteBtn = ({ ...rest }) => {
   return (
     <>
-      <button type="button" className={DeleteStyles['delete-btn']}>
+      <button {...rest} type="button" className={DeleteStyles["delete-btn"]}>
         전체삭제
       </button>
     </>

@@ -86,6 +86,25 @@ export const postMessage = async (formData, id) => {
   return body;
 };
 
+export const putMessage = async (formData, id) => {
+  const response = await fetch(`${BASE_URL}/messages/${id}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("메시지 수정에 실패했습니다.");
+  }
+  const body = await response.json();
+  return body;
+};
+
+export const getMessage = async ({ id }) => {
+  return await GET(`${BASE_URL}/messages/${id}/`);
+};
+
 export async function getRecipientRollingPaper({ id = 0 }) {
   return await GET(`${BASE_URL}/recipients/${id}/`);
 }
@@ -122,4 +141,28 @@ export async function postRecipients(formData) {
   } catch (error) {
     throw new Error(`메시지 생성에 실패했습니다: ${error.message}`);
   }
+}
+
+export async function deleteMessage(id) {
+  const response = await fetch(`${BASE_URL}/messages/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the message");
+  }
+
+  return response;
+}
+
+export async function deleteRollingPaper(id) {
+  const response = await fetch(`${BASE_URL}/recipients/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the recipient");
+  }
+
+  return response;
 }

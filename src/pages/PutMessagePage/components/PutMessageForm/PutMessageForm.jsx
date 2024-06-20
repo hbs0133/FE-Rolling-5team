@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postMessage } from "../../../../services/api.js";
-import styles from "../../PostMessagePage.module.scss";
+import styles from "../../PutMessagePage.module.scss";
 import InputSection from "../InputSection/InputSection.jsx";
 import TextInput from "../TextInput/TextInput.jsx";
-import ProfileImageInput from "../ProfileImageInput/ProfileImageInput";
+import ProfileImageInput from "../ProfileImageInput/ProfileImageInput.jsx";
 import DropDown from "../DropDown/DropDown.jsx";
-import TextEditor from "../TextEditor/TextEditor";
+import TextEditor from "../TextEditor/TextEditor.jsx";
 import Card from "../PreviewCard/PreviewCard.jsx";
 import Modal from "../Modal/Modal.jsx";
 import { getRecipientRollingPaper } from "../../../../services/api.js";
+import { getMessage } from "../../../../services/api.js";
+import { putMessage } from "../../../../services/api.js";
 
 const INITIAL_TEAM = "7-5";
 
@@ -29,7 +30,7 @@ const INITIAL_VALUES = {
 const relationshipList = ["친구", "지인", "동료", "가족"];
 const fontList = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
 
-const PostMessageForm = ({ id }) => {
+const PutMessageForm = ({ id }) => {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [recipientName, setRecipientName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,13 +54,25 @@ const PostMessageForm = ({ id }) => {
     }
   };
 
+  const handleLoadMessage = async (id) => {
+    try {
+      const message = await getMessage({ id: id });
+      setValues(message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
     try {
       setIsSubmitting(true);
-      await postMessage(
-        { ...values, recipientId: Number(values.recipientId) },
+      await putMessage(
+        {
+          ...values,
+          recipientId: Number(values.recipientId),
+          team: INITIAL_TEAM,
+        },
         id
       );
     } catch (error) {
@@ -68,14 +81,18 @@ const PostMessageForm = ({ id }) => {
     } finally {
       setIsSubmitting(false);
     }
-    setValues(INITIAL_VALUES);
-    navigate(`/post/${id}`);
+    navigate(`/post/${values.recipientId}`);
   };
 
   useEffect(() => {
-    handleChange("recipientId", id);
-    handleLoadRecipientName(id);
+    handleLoadMessage(id);
   }, [id]);
+
+  useEffect(() => {
+    if (values.recipientId !== 0) {
+      handleLoadRecipientName(values.recipientId);
+    }
+  }, [values.recipientId]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -147,4 +164,4 @@ const PostMessageForm = ({ id }) => {
   );
 };
 
-export default PostMessageForm;
+export default PutMessageForm;

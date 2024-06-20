@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import PostStyles from "./PostPage.module.scss";
 import check from "../../assets/images/check.svg";
 
-const FileInPut = ({ images, selectedImage, setSelectedImage }) => {
+const FileInPut = ({
+  images,
+  selectedImage,
+  setSelectedImage,
+  setSelectedColor,
+}) => {
   const handleImageClick = (index) => {
     setSelectedImage(index);
   };
@@ -17,10 +22,13 @@ const FileInPut = ({ images, selectedImage, setSelectedImage }) => {
             className={`${PostStyles["image-button"]} ${
               selectedImage === index ? PostStyles.selected : ""
             }`}
-            onClick={() => handleImageClick(index)}
+            onClick={() => {
+              handleImageClick(index);
+              setSelectedColor("beige");
+            }}
           >
             <img
-              src={image.urls.small}
+              src={image.urls.full}
               alt="배경 이미지"
               className={PostStyles["background-image"]}
             />

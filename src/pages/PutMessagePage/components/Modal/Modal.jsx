@@ -46,12 +46,12 @@ const Modal = ({ value, isSubmitting, onSubmit, recipientName }) => {
         >
           <div className={modalStyles["modal-content"]}>
             <p className={modalStyles["modal-content-recipient"]}>
-              <span>{recipientName}</span> 에게 메시지를 작성하시겠습니까?
+              <span>{recipientName}</span> 에게 메시지를 수정하시겠습니까?
             </p>
             <Card message={value} />
             <div className={modalStyles["modal-buttons"]}>
               <Button size="small" onClick={onSubmit}>
-                작성하기
+                수정하기
               </Button>
               <Button
                 size="small"

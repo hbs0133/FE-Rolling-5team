@@ -79,7 +79,7 @@ const Card = ({ message }) => {
         <div className={CardStyles.date}>{getFormattedDate()}</div>
       </div>
       {sender && content && (
-        <div className={CardStyles.valid}>생성이 가능합니다 !</div>
+        <div className={CardStyles.valid}>수정이 가능합니다 !</div>
       )}
     </>
   );

@@ -47,7 +47,11 @@ const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
         <p
           className={ModalStyles.description}
           dangerouslySetInnerHTML={{ __html: recentMessages.content }}
-          style={{ fontFamily: recentMessages.font }}
+          style={
+            recentMessages.font === "나눔손글씨 손편지체"
+              ? { fontFamily: "Handletter" }
+              : { fontFamily: recentMessages.font }
+          }
         ></p>
         <div className={ModalStyles["button-wrap"]}>
           <div className={ModalStyles["check-Button"]}>

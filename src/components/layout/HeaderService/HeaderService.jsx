@@ -7,13 +7,14 @@ import ReactionSession from "./components/ReactionSession";
 import HeaderServiceStyles from "./HeaderService.module.scss";
 import useRecipientData from "../../../hooks/useRecipientReactionData";
 import useDevice from "../../../hooks/useDevice";
+import { useParams } from "react-router-dom";
 
 function HeaderService() {
-  const { recipientData, handleSelectedEmoji } = useRecipientData();
+  const { id } = useParams();
+  const { recipientData, handleSelectedEmoji } = useRecipientData(id);
   const { topReactions, reactions, userName, senderCount, recentMessages } =
     recipientData;
   const { isDesktop } = useDevice();
-
   const isLoading = !userName;
 
   return (
@@ -25,19 +26,19 @@ function HeaderService() {
         <div className={HeaderServiceStyles["service-wrapper"]}>
           {isDesktop && (
             <>
-              {/* {isLoading ? (
+              {isLoading ? (
                 <Skeleton height={30} width={200} />
-              ) : ( */}
-              <CumulativeUsers
-                senderCount={senderCount}
-                recentMessages={recentMessages}
-              />
-              {/* )} */}
+              ) : (
+                <CumulativeUsers
+                  senderCount={senderCount}
+                  recentMessages={recentMessages}
+                />
+              )}
               <div
                 className={`${HeaderServiceStyles["vertical-divider"]} ${HeaderServiceStyles["first-line"]}`}
               ></div>
             </>
-          )}{" "}
+          )}
           <ReactionSession
             topReactions={topReactions}
             reactions={reactions}

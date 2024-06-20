@@ -55,21 +55,28 @@ const Dropdown = ({
       >
         {renderTrigger()}
       </div>
-      {isOpen && (
-        <div className={`${DropdownStyles.menu} ${menuClassName}`}>
-          {items
-            ? items.map((item, index) => (
-                <div
-                  className={`${DropdownStyles["menu-item"]} ${itemClassName}`}
-                  key={index}
-                  onClick={() => handleItemClick(item)}
-                >
-                  {item}
-                </div>
-              ))
-            : children}
-        </div>
-      )}
+
+      <div
+        className={`${DropdownStyles.menu} ${
+          isOpen ? `${menuClassName} ${DropdownStyles["menu-active"]}` : ""
+        }`}
+      >
+        {isOpen && (
+          <>
+            {items
+              ? items.map((item, index) => (
+                  <div
+                    className={`${DropdownStyles["menu-item"]} ${itemClassName}`}
+                    key={index}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </div>
+                ))
+              : children}
+          </>
+        )}
+      </div>
     </div>
   );
 };

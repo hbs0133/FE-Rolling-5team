@@ -71,21 +71,22 @@ const PostPage = () => {
       </button>
     );
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
+  const getFormData = (e) => {
+    return {
       team: "7-5",
       name: e.target.name.value,
       backgroundColor: selectedColor,
-      backgroundImageURL: images[selectedImage].urls.small,
+      backgroundImageURL: isColorSelected ? null : images[selectedImage].urls.full,
     };
-
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = getFormData(e);
     console.log("FormData:", formData);
 
     try {
       const result = await postRecipients(formData);
-      navigate("/");
+      navigate("/list");
       console.log("메시지 생성 결과:", result);
     } catch (error) {
       console.error("메시지 생성에 실패했습니다:", error.message);
@@ -149,6 +150,7 @@ const PostPage = () => {
             images={images}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
+            setSelectedColor={setSelectedColor}
           />
         )}
         <Button className={PostStyles["created-button"]} disable={!!inputError}>

@@ -5,7 +5,7 @@ const RollingCardName = ({ name, backgroundImage }) => {
   const textStyle = backgroundImage ? { color: '#ffffff' } : {}
   return (
     <h1 className={styles.cardName} style={textStyle}>
-      To .{name}
+      To. {name}
     </h1>
   )
 }

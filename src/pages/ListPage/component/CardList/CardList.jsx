@@ -8,9 +8,10 @@ import 'swiper/scss/navigation'
 import 'swiper/scss'
 
 function CardList({ order = '', isMobile, isPhone, onClick }) {
-  const [cardList, setcardList] = useState([])
-  const [nextUrl, setnextUrl] = useState(null)
-  const [prevUrl, setprevUrl] = useState(null)
+  const [cardList, setCardList] = useState([])
+  const [nextUrl, setNextUrl] = useState(null)
+  const [prevUrl, setPrevUrl] = useState(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   const nextButtonRef = useRef(null)
   const prevButtonRef = useRef(null)
@@ -20,9 +21,9 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
     const { results, next, previous } = await getRecipientList({
       sort: order,
     })
-    setprevUrl(previous)
-    setnextUrl(next)
-    setcardList(results)
+    setPrevUrl(previous)
+    setNextUrl(next)
+    setCardList(results)
   }, [order])
 
   useEffect(() => {
@@ -31,6 +32,11 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
 
   const handleSwiper = (swiper) => {
     swiperRef.current = swiper
+    setCurrentSlide(swiper.realIndex)
+  }
+
+  const handleSlideChange = () => {
+    setCurrentSlide(swiperRef.current.realIndex)
   }
 
   const handleNextButtonClick = async () => {
@@ -40,9 +46,9 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
         previous,
         results: fetchedCards,
       } = await getCustomRecipient(nextUrl)
-      setnextUrl(next)
-      setprevUrl(previous)
-      setcardList((currentCardList) => {
+      setNextUrl(next)
+      setPrevUrl(previous)
+      setCardList((currentCardList) => {
         const newCards = fetchedCards.filter(
           (newCard) =>
             !currentCardList.some(
@@ -54,17 +60,43 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
       if (!isMobile) {
         setTimeout(() => {
           swiperRef.current.update()
-          swiperRef.current.slideNext()
+          if (swiperRef.current.isEnd) {
+            swiperRef.current.slideTo(currentSlide + 1, 0)
+          } else {
+            swiperRef.current.slideNext()
+          }
         }, 100)
       }
+    } else {
+      swiperRef.current.slideNext()
     }
   }
 
   const handlePrevButtonClick = async () => {
-    const { next, previous } = await getCustomRecipient(prevUrl)
-    setnextUrl(next)
-    setprevUrl(previous)
-    swiperRef.current.slidePrev()
+    if (prevUrl) {
+      const {
+        next,
+        previous,
+        results: fetchedCards,
+      } = await getCustomRecipient(prevUrl)
+      setNextUrl(next)
+      setPrevUrl(previous)
+      setCardList((currentCardList) => {
+        const newCards = fetchedCards.filter(
+          (newCard) =>
+            !currentCardList.some(
+              (existingCard) => existingCard.id === newCard.id
+            )
+        )
+        return [...newCards, ...currentCardList]
+      })
+      setTimeout(() => {
+        swiperRef.current.update()
+        swiperRef.current.slidePrev()
+      }, 100)
+    } else {
+      swiperRef.current.slidePrev()
+    }
   }
 
   const handleReachEnd = () => {
@@ -81,6 +113,7 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
     slidesPerView: 'auto',
     slidesPerGroup: 1,
     onSwiper: handleSwiper,
+    onSlideChange: handleSlideChange,
     spaceBetween: 20,
     onReachEnd: () => (!isMobile ? null : handleReachEnd()),
     breakpoints: {
@@ -90,6 +123,10 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
       },
     },
   }
+
+  const showPrevButton = currentSlide > 0
+  const showNextButton = currentSlide < cardList.length - 4
+
   return (
     <>
       {cardList.length !== 0 ? (
@@ -115,22 +152,22 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
           </Swiper>
 
           {!isMobile && (
-            <>
-              {nextUrl && (
-                <button
-                  onClick={handleNextButtonClick}
-                  ref={nextButtonRef}
-                  className={styles.customSwiperButtonNext}
-                />
-              )}
-              {prevUrl && (
+            <div className={styles.navigationButtons}>
+              {showPrevButton && (
                 <button
                   onClick={handlePrevButtonClick}
                   ref={prevButtonRef}
                   className={styles.customSwiperButtonPrev}
                 />
               )}
-            </>
+              {showNextButton && (
+                <button
+                  onClick={handleNextButtonClick}
+                  ref={nextButtonRef}
+                  className={styles.customSwiperButtonNext}
+                />
+              )}
+            </div>
           )}
         </div>
       ) : (

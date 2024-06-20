@@ -55,7 +55,7 @@ const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
         ></p>
         <div className={ModalStyles["button-wrap"]}>
           <div className={ModalStyles["check-Button"]}>
-            <Link to={`/put/${recentMessages.id}`}>
+            <Link to={`/put/${recentMessages.id}/message/`}>
               <Button size="small">수정하기</Button>
             </Link>
           </div>

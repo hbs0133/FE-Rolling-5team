@@ -8,6 +8,7 @@ import HeaderServiceStyles from "./HeaderService.module.scss";
 import useRecipientData from "../../../hooks/useRecipientReactionData";
 import useDevice from "../../../hooks/useDevice";
 import { useParams } from "react-router-dom";
+import { useTheme } from "../../UI/Theme/ThemeContext";
 
 function HeaderService() {
   const { id } = useParams();
@@ -17,8 +18,11 @@ function HeaderService() {
   const { isDesktop } = useDevice();
   const isLoading = !userName;
 
+  const { theme } = useTheme();
+  const themeStyle = HeaderServiceStyles[`${theme}-theme`];
+
   return (
-    <div className={HeaderServiceStyles.main}>
+    <div className={`${HeaderServiceStyles.main} ${themeStyle}`}>
       <div className={HeaderServiceStyles["header-service"]}>
         <h1 className={HeaderServiceStyles["user-name"]}>
           To. {isLoading ? <Skeleton height={28} width={150} /> : userName}

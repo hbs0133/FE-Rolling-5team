@@ -3,6 +3,7 @@ import arrowDown from "../../../../assets/icons/ic_arrow_down.svg";
 import ExpandedReactionDropdownStyles from "./ExpandedReactionDropdown.module.scss";
 import reactionEmojiStyles from "../../ReactionEmoji/ReactionEmoji.module.scss";
 import { useState } from "react";
+import { useTheme } from "../../Theme/ThemeContext";
 
 export function ExpandedReactionDropdown({
   onSelectedEmoji = () => {},
@@ -13,6 +14,8 @@ export function ExpandedReactionDropdown({
     native: "",
   };
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
+  const themeStyle = ExpandedReactionDropdownStyles[`${theme}-theme`];
 
   const handleEmojiSelect = (id, emoji) => {
     emojis.id = id;
@@ -30,12 +33,14 @@ export function ExpandedReactionDropdown({
         <img
           src={arrowDown}
           alt="추가된 이모티콘 더보기"
-          className={`${ExpandedReactionDropdownStyles["arrow-image"]} ${
+          className={`${
+            ExpandedReactionDropdownStyles["arrow-image"]
+          } ${themeStyle} ${
             isOpen ? ExpandedReactionDropdownStyles["flipped"] : ""
           }`}
         />
       }
-      triggerClassName={ExpandedReactionDropdownStyles.trigger}
+      triggerClassName={`${ExpandedReactionDropdownStyles.trigger} ${themeStyle}`}
       onToggle={handleToggle}
     >
       {!reactions.length && (

@@ -18,7 +18,7 @@ function Main() {
           <Route path=":id" element={<CreatedRollingListPage />} />
           <Route path=":id/message" element={<PostMessagePage />} />
         </Route>
-        <Route path="/put/:id/" element={<PutMessagePage />} />
+        <Route path="/put/:id/message" element={<PutMessagePage />} />
       </Route>
     </Routes>
   )

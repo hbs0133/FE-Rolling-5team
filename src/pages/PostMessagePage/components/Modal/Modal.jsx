@@ -3,12 +3,21 @@ import modalStyles from "./Modal.module.scss";
 import Button from "../../../../components/UI/Button/Button";
 import Card from "../Card/Card";
 
-const Modal = ({ value, isSubmitting, onSubmit, recipientName }) => {
+const Modal = ({
+  value,
+  isSubmitting,
+  onSubmit,
+  recipientName,
+  previewProfileImage,
+  onImageChange,
+  isUpLoadImage,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
 
   const handleOnClickOpen = () => {
     setModalOpen(true);
+    onImageChange();
   };
 
   useEffect(() => {
@@ -48,10 +57,10 @@ const Modal = ({ value, isSubmitting, onSubmit, recipientName }) => {
             <p className={modalStyles["modal-content-recipient"]}>
               <span>{recipientName}</span> 에게 메시지를 작성하시겠습니까?
             </p>
-            <Card message={value} />
+            <Card message={value} previewProfileImage={previewProfileImage} />
             <div className={modalStyles["modal-buttons"]}>
-              <Button size="small" onClick={onSubmit}>
-                작성하기
+              <Button size="small" onClick={onSubmit} disable={!isUpLoadImage}>
+                {!isUpLoadImage ? "로딩중" : "작성하기"}
               </Button>
               <Button
                 size="small"

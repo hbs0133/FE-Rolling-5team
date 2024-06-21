@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { InView } from "react-intersection-observer";
+import ClipLoader from "react-spinners/ClipLoader";
 import ListStyles from "./CreatedRollingListPage.module.scss";
 import Modal from "./Modal";
 import Card from "./Card";
@@ -83,7 +84,7 @@ const CreatedRollingListPage = () => {
 
   async function fetchRecipientRollingPaper() {
     try {
-      setIsLoading(false);
+      setIsLoading(true);
       const recipient = await getRecipientRollingPaper({
         id: id,
       });
@@ -102,7 +103,7 @@ const CreatedRollingListPage = () => {
         ...message,
       }));
 
-      setIsLoading(true);
+      setIsLoading(false);
     } catch (error) {
       console.error("Failed to fetch recipient:", error);
     }
@@ -156,7 +157,17 @@ const CreatedRollingListPage = () => {
     fetchRecipientRollingPaper();
   }, [id]);
 
-  return (
+  return isLoading ? (
+    <div className={ListStyles["loading-spinner"]}>
+      <ClipLoader
+        color="#cccccc"
+        loading={isLoading}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  ) : (
     <div
       className={ListStyles["background-container"]}
       style={
@@ -201,16 +212,6 @@ const CreatedRollingListPage = () => {
           />
         )}
         <div className={ListStyles["flex-end"]}>
-          <Link to="/list">
-            <button className={ListStyles["back-btn"]}>
-              <img
-                src={arrowBackIcon}
-                alt="뒤로가기버튼"
-                onMouseEnter={(e) => (e.target.src = purpleArrowBackIcon)}
-                onMouseLeave={(e) => (e.target.src = arrowBackIcon)}
-              />
-            </button>
-          </Link>
           <DeleteBtn onClick={handleDeleteBtnClick} />
         </div>
         <div className={ListStyles["list-wrap"]}>

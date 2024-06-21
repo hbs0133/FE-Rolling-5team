@@ -4,6 +4,14 @@ body {
   height: 100%;
 }
 
+.loading-spinner {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .background-container {
   position: relative;
   width: 100%;
@@ -18,7 +26,7 @@ body {
 
 .flex-end {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 11px;
 
@@ -82,6 +90,7 @@ body {
       border: none;
       background-color: transparent;
       cursor: pointer;
+      background-image: url("../../assets/icons/plusbtn_enabled_ic.svg");
       background-repeat: no-repeat;
       background-size: 56px;
       background-position: center;

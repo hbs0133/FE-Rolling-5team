@@ -19,6 +19,7 @@ function HeaderService() {
   const isLoading = !userName;
 
   const { theme } = useTheme();
+
   const themeStyle = HeaderServiceStyles[`${theme}-theme`];
 
   return (

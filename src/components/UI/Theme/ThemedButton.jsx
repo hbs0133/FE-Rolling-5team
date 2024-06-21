@@ -8,18 +8,18 @@ const ThemedButton = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={`switch ${theme}-theme`} onClick={toggleTheme}>
+    <button className={`switch ${theme}-theme`} onClick={toggleTheme}>
       <div className="circle">
         <div className="circle-in"></div>
       </div>
-      <button className="theme-button">
+      <div className="theme-button">
         {theme === "dark" ? (
           <img className="button-image" src={moonImage} alt="낮 테마로 변경" />
         ) : (
           <img className="button-image" src={sunImage} alt="밤 테마 변경" />
         )}
-      </button>
-    </div>
+      </div>
+    </button>
   );
 };
 

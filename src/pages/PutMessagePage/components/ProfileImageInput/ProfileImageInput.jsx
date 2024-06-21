@@ -1,47 +1,40 @@
 import { useEffect, useRef } from "react";
 import styles from "../../PutMessagePage.module.scss";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { storage } from "../../../../services/firebase";
 import plusIcon from "../../../../assets/icons/icon_plus.svg";
 import minusIcon from "../../../../assets/icons/icon_minus.svg";
 import manProfile from "../../../../assets/images/profile_man.png";
 import woManProfile from "../../../../assets/images/profile_woman.png";
+import defaultProfileImage from "../../../../assets/images/profile_image_default.jpg";
 
-const defaultProfileImage =
+const defaultProfileImageURL =
   "https://firebasestorage.googleapis.com/v0/b/fe-rolling-5team.appspot.com/o/files%2FFrame%202593.jpg?alt=media&token=c03d4b94-79e3-43d3-be7f-79409a51248d";
 const manProfileURL =
   "https://firebasestorage.googleapis.com/v0/b/fe-rolling-5team.appspot.com/o/files%2Fprofile_man.png?alt=media&token=150ac2ff-007b-4515-b3d4-e98fd66eaaaa";
 const woManProfileURL =
   "https://firebasestorage.googleapis.com/v0/b/fe-rolling-5team.appspot.com/o/files%2Fprofile_woman.png?alt=media&token=f1a64e36-8917-421d-aa9b-6eec0d2c87f1";
 
-const ProfileImageInput = ({ valueName, value, onChange }) => {
+const ProfileImageInput = ({
+  valueName,
+  onChange,
+  setProfileImageFile,
+  previewProfileImage,
+  setPreviewProfileImage,
+}) => {
   const fileInputRef = useRef();
 
-  const uploadImage = () => {
-    const onImageChange = (e) => {
-      e.preventDefault();
-      const file = e.target.files;
-      if (!file) return null;
-
-      const storageRef = ref(storage, `files/${file[0].name}`);
-      const uploadTask = uploadBytes(storageRef, file[0]);
-
-      uploadTask.then((snapshot) => {
-        e.target.value = "";
-        getDownloadURL(snapshot.ref).then((downloadURL) => {
-          onChange(valueName, downloadURL);
-        });
-      });
-    };
-    const fileInputNode = fileInputRef.current;
-    if (fileInputNode) {
-      fileInputNode.addEventListener("change", onImageChange);
+  const handleChangePreviewProfileImage = (e) => {
+    const nextValue = e.target.files[0];
+    if (nextValue) {
+      const nextPreviewProfileImage = URL.createObjectURL(nextValue);
+      setPreviewProfileImage(nextPreviewProfileImage);
+      setProfileImageFile(nextValue);
     }
   };
 
-  useEffect(() => {
-    uploadImage();
-  }, []);
+  const handleClickGenderImage = (value, genderImg) => {
+    onChange(valueName, value);
+    setPreviewProfileImage(genderImg);
+  };
 
   const handleAddProfileImage = () => {
     const fileInputNode = fileInputRef.current;
@@ -51,11 +44,20 @@ const ProfileImageInput = ({ valueName, value, onChange }) => {
   };
 
   const handleClearProfileImage = () => {
-    onChange(valueName, defaultProfileImage);
+    setPreviewProfileImage(defaultProfileImage);
+    onChange(valueName, defaultProfileImageURL);
     const fileInputNode = fileInputRef.current;
     if (!fileInputNode) return;
     fileInputNode.value = "";
   };
+
+  useEffect(() => {
+    return () => {
+      if (previewProfileImage) {
+        URL.revokeObjectURL(previewProfileImage);
+      }
+    };
+  }, [previewProfileImage]);
 
   return (
     <>
@@ -63,10 +65,11 @@ const ProfileImageInput = ({ valueName, value, onChange }) => {
         <label className={styles["profile-preview"]} htmlFor="profileImageURL">
           <img
             className={styles["profile-preview-image"]}
-            src={value}
+            src={previewProfileImage}
             alt="메시지 등록 페이지에 클릭하여 변경을 할수있는 선택된 프로필 이미지 "
           />
-          {value && value !== defaultProfileImage ? (
+          {previewProfileImage &&
+          previewProfileImage !== defaultProfileImage ? (
             <button
               type="button"
               className={styles["profile-image-button"]}
@@ -95,7 +98,7 @@ const ProfileImageInput = ({ valueName, value, onChange }) => {
           <div className={styles["profile-image-pickker"]}>
             <button
               type="button"
-              onClick={() => onChange(valueName, manProfileURL)}
+              onClick={() => handleClickGenderImage(manProfileURL, manProfile)}
             >
               <img
                 src={manProfile}
@@ -104,7 +107,9 @@ const ProfileImageInput = ({ valueName, value, onChange }) => {
             </button>
             <button
               type="button"
-              onClick={() => onChange(valueName, woManProfileURL)}
+              onClick={() =>
+                handleClickGenderImage(woManProfileURL, woManProfile)
+              }
             >
               <img
                 src={woManProfile}
@@ -119,6 +124,7 @@ const ProfileImageInput = ({ valueName, value, onChange }) => {
         accept="image/png, image/jpeg"
         id="profileImageURL"
         name="profileImageURL"
+        onChange={handleChangePreviewProfileImage}
         ref={fileInputRef}
       />
     </>

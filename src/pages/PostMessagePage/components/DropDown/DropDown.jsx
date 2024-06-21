@@ -21,6 +21,23 @@ const DropDown = ({ valueName, value, onChange, list }) => {
     }
   };
 
+  const getFontFamily = (font) => {
+    let fontFamily;
+    if (font === "Noto Sans") {
+      fontFamily = "notoSans";
+    }
+    if (font === "Pretendard") {
+      fontFamily = null;
+    }
+    if (font === "나눔명조") {
+      fontFamily = "nanumMyeongjo";
+    }
+    if (font === "나눔손글씨 손편지체") {
+      fontFamily = "handletter";
+    }
+    return fontFamily;
+  };
+
   useEffect(() => {
     if (dropDownVisibility) {
       clearTimeout(repeat);
@@ -38,23 +55,6 @@ const DropDown = ({ valueName, value, onChange, list }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [dropDownVisibility]);
-
-  const getFontFamily = (font) => {
-    let fontFamily;
-    if (font === "Noto Sans") {
-      fontFamily = "notoSans";
-    }
-    if (font === "Pretendard") {
-      fontFamily = null;
-    }
-    if (font === "나눔명조") {
-      fontFamily = "nanumMyeongjo";
-    }
-    if (font === "나눔손글씨 손편지체") {
-      fontFamily = "handletter";
-    }
-    return fontFamily;
-  };
 
   return (
     <div className={dropDownStyles["drop-down"]} ref={dropdownRef}>

@@ -4,6 +4,8 @@ import CreateRollingPaper from "./components/CreateRollingPaper";
 import HeaderService from "../HeaderService/HeaderService";
 import RollingPaperLogo from "./components/RollingPaperLogo";
 import { useLocation, useParams } from "react-router-dom";
+import { useTheme } from "../../UI/Theme/ThemeContext";
+import ThemedButton from "../../UI/Theme/ThemedButton";
 
 function Header() {
   const location = useLocation();
@@ -18,6 +20,9 @@ function Header() {
     isPostMessagePage: false,
   });
 
+  const { theme } = useTheme();
+  const themeStyle = HeaderStyles[`${theme}-theme`];
+
   useEffect(() => {
     setIsPage({
       isHomePage: location.pathname === "/",
@@ -30,10 +35,13 @@ function Header() {
 
   return (
     <>
-      <header className={HeaderStyles.main}>
+      <header className={`${HeaderStyles.main} ${themeStyle}`}>
         <div className={HeaderStyles.header}>
-          <RollingPaperLogo />
-          {(isPage.isHomePage || isPage.isListPage) && <CreateRollingPaper />}
+          <RollingPaperLogo theme={theme} />
+          <div className={HeaderStyles["button-wrapper"]}>
+            <ThemedButton />
+            {(isPage.isHomePage || isPage.isListPage) && <CreateRollingPaper />}
+          </div>
         </div>
       </header>
       {isPage.isCreatedRollingListPage && <HeaderService />}

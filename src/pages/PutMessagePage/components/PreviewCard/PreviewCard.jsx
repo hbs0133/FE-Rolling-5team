@@ -1,8 +1,7 @@
 import CardStyles from "./PreviewCard.module.scss";
 import Badge from "./Badge";
-import "./quill.css";
 
-const Card = ({ message }) => {
+const Card = ({ message, previewProfileImage }) => {
   const { sender, profileImageURL, relationship, content, font } = message;
 
   const getFormattedDate = () => {
@@ -40,7 +39,7 @@ const Card = ({ message }) => {
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img
-              src={profileImageURL}
+              src={previewProfileImage}
               alt="프로필이미지"
               className={CardStyles["profile-img"]}
             />

@@ -38,6 +38,17 @@
   justify-content: center;
 }
 
+.cardList {
+  display: flex;
+  gap: 20px;
+}
+
+.skeleton {
+  width: 275px;
+  height: 260px;
+  border-radius: 15px;
+}
+
 @media (min-width: 360px) and (max-width: 767px) {
   .container {
     height: 100%;
@@ -53,6 +64,11 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 30px;
+  }
+
+  .skeleton {
+    width: 208px;
+    height: 232px;
   }
 }
 

@@ -117,7 +117,7 @@ function CardList({ order = '', isMobile, isPhone, onClick }) {
     spaceBetween: 20,
     onReachEnd: () => (!isMobile ? null : handleReachEnd()),
     breakpoints: {
-      1920: {
+      1200: {
         slidesPerView: 4,
         slidesPerGroup: 4,
       },

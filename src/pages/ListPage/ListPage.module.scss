@@ -3,7 +3,7 @@
   height: 100vh;
   width: 100%;
   z-index: 1;
-  padding: 124px 0 0;
+  padding: 50px 0 0;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@
 @media (min-width: 360px) and (max-width: 767px) {
   .container {
     height: 100%;
-    padding: 124px 20px;
+    padding: 50px 20px;
   }
   .hot {
     margin-bottom: 74px;
@@ -59,7 +59,7 @@
 @media (min-width: 768px) and (max-width: 1919px) {
   .container {
     height: 100%;
-    padding: 124px 24px;
+    padding: 40px 24px;
   }
   .new {
     margin-bottom: 156px;

@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import ToggleButton from "./ToggleButton";
 import FileInPut from "./FileInPut";
 import { getUnsplashApi, postRecipients } from "../../services/api";
-import refresh_icon from "../../assets/images/refresh_icon.png";
+import refresh_icon from "../../assets/images/refresh_icon.svg";
+import refresh_white_icon from "../../assets/images/refresh_white_icon.svg";
+import { useTheme } from "../../components/UI/Theme/ThemeContext";
 
 const UNSPLASH_ACCESS_KEY = "lJoYj2iVWVrNUCyhYho73MymgSAVemOjwtd_Wo_AhIU";
 
@@ -18,6 +20,8 @@ const PostPage = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+  const { theme } = useTheme();
+  const themeStyle = PostStyles[`${theme}-theme`];
 
   useEffect(() => {
     fetchImages();
@@ -76,7 +80,9 @@ const PostPage = () => {
       team: "7-5",
       name: e.target.name.value,
       backgroundColor: selectedColor,
-      backgroundImageURL: isColorSelected ? null : images[selectedImage].urls.full,
+      backgroundImageURL: isColorSelected
+        ? null
+        : images[selectedImage].urls.full,
     };
   };
   const handleSubmit = async (e) => {
@@ -97,7 +103,7 @@ const PostPage = () => {
     <div className={PostStyles.postpage}>
       <form onSubmit={handleSubmit}>
         <div className={PostStyles["label-input"]}>
-          <label htmlFor="name" className={PostStyles.label}>
+          <label htmlFor="name" className={`${PostStyles.label} ${themeStyle}`}>
             To.
           </label>
           <input
@@ -113,8 +119,10 @@ const PostPage = () => {
           {inputError && <span className={PostStyles.error}>{inputError}</span>}
         </div>
         <div className={PostStyles["color-image"]}>
-          <h1 className={PostStyles.h1}>배경화면을 선택해 주세요.</h1>
-          <span className={PostStyles["choose-color"]}>
+          <h1 className={`${PostStyles.h1} ${themeStyle}`}>
+            배경화면을 선택해 주세요.
+          </h1>
+          <span className={`${PostStyles["choose-color"]} ${themeStyle}`}>
             컬러를 선택하거나, 이미지를 선택할 수 있습니다.
           </span>
         </div>
@@ -130,7 +138,7 @@ const PostPage = () => {
               onClick={fetchImages}
             >
               <img
-                src={refresh_icon}
+                src={theme === "dark" ? refresh_white_icon : refresh_icon}
                 alt="새로고침"
                 width="30px"
                 height="30px"

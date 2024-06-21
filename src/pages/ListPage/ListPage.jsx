@@ -3,6 +3,7 @@ import styles from './ListPage.module.scss'
 import Button from '../../components/UI/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import useDevice from '../../hooks/useDevice'
+import { Link } from 'react-router-dom'
 
 function ListPage() {
   const navigate = useNavigate()
@@ -33,12 +34,14 @@ function ListPage() {
           />
         </div>
         <div className={styles.buttonContainer}>
-          <Button
-            onClick={() => handleNavigationPostPage('')}
-            widthMax={isMobile}
-          >
-            나도 만들어 보기
-          </Button>
+          <Link to="/post" className={styles.buttonLink}>
+            <Button
+              onClick={() => handleNavigationPostPage('')}
+              widthMax={isMobile}
+            >
+              나도 만들어 보기
+            </Button>
+          </Link>
         </div>
       </div>
     </>

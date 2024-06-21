@@ -1,4 +1,10 @@
-/* styles.module.css */
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
 .emoji-container {
   display: flex;
   align-items: center;
@@ -19,11 +25,14 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  gap: 2px;
+  padding: 8px 12px;
 }
 
 .emoji-container .emoji-button .emoji {
   z-index: 1;
   white-space: nowrap;
+  @include font-style(16px, 400, 20px, var(--white));
 }
 
 .count-ani {
@@ -37,10 +46,20 @@
   animation: gradientAnimation 10s ease infinite;
 }
 
+.emoji-button.list-page {
+  cursor: default;
+}
+
 @media (max-width: 760px) {
   .emoji-container .emoji-button {
     width: 53px;
     height: 28px;
+    padding: 4px 8px;
+  }
+
+  .emoji-container .emoji-button .emoji {
+    @include font-style(14px, 400, 20px, var(--white));
+    letter-spacing: -0.05em;
   }
 }
 

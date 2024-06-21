@@ -11,3 +11,17 @@
 .emoji-button:hover {
   background-color: rgba(0, 0, 0, 0.47);
 }
+
+.add-container.dark-theme {
+  .image {
+    filter: invert(100%) brightness(200%);
+  }
+
+  .text {
+    color: var(--background-color-light);
+  }
+}
+
+.dark-theme.trigger:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}

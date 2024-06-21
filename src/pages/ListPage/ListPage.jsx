@@ -35,12 +35,7 @@ function ListPage() {
         </div>
         <div className={styles.buttonContainer}>
           <Link to="/post" className={styles.buttonLink}>
-            <Button
-              onClick={() => handleNavigationPostPage('')}
-              widthMax={isMobile}
-            >
-              나도 만들어 보기
-            </Button>
+            <Button widthMax={isMobile}>나도 만들어 보기</Button>
           </Link>
         </div>
       </div>

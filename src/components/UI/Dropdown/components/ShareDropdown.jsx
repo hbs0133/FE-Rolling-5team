@@ -1,13 +1,16 @@
-import React, { useState } from "react";
 import Dropdown from "../Dropdown";
 import shareImage from "../../../../assets/icons/ic_share.svg";
 import shareDropdownStyles from "./ShareDropdown.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "../../Theme/ThemeContext";
 
 const TEMPLATE_ID = 109064;
 
 const ShareDropdown = () => {
+  const { theme } = useTheme();
+  const themeStyle = shareDropdownStyles[`${theme}-theme`];
+
   const actions = {
     "카카오톡 공유": () => {
       shareToKakao();
@@ -60,11 +63,17 @@ const ShareDropdown = () => {
   return (
     <>
       <Dropdown
-        trigger={<img src={shareImage} alt="외부링크 공유" />}
+        trigger={
+          <img
+            src={shareImage}
+            alt="외부링크 공유"
+            className={`${shareDropdownStyles.image} ${themeStyle}`}
+          />
+        }
         items={Object.keys(actions)}
         onSelect={handleSelect}
-        triggerClassName={`${shareDropdownStyles.trigger}`}
-        menuClassName={`${shareDropdownStyles.menu}`}
+        triggerClassName={`${shareDropdownStyles.trigger} ${themeStyle}`}
+        menuClassName={`${shareDropdownStyles.menu} ${themeStyle}`}
         itemClassName={`${shareDropdownStyles.item}`}
       ></Dropdown>
       <div className={shareDropdownStyles.toast}>

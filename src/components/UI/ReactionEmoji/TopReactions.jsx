@@ -22,19 +22,19 @@ function TopReactions({ topReactions = [], onSelectedEmoji = () => {} }) {
       from: { opacity: 0, transform: "translateY(-10px)" },
       enter: { opacity: 1, transform: "translateY(0)" },
       leave: { opacity: 0, transform: "translateY(10px)" },
-      config: { duration: 200 },
+      config: { duration: 300 },
     }),
     useTransition(counts[1], {
       from: { opacity: 0, transform: "translateY(-10px)" },
       enter: { opacity: 1, transform: "translateY(0)" },
       leave: { opacity: 0, transform: "translateY(10px)" },
-      config: { duration: 200 },
+      config: { duration: 300 },
     }),
     useTransition(counts[2], {
       from: { opacity: 0, transform: "translateY(-10px)" },
       enter: { opacity: 1, transform: "translateY(0)" },
       leave: { opacity: 0, transform: "translateY(10px)" },
-      config: { duration: 200 },
+      config: { duration: 300 },
     }),
   ];
 
@@ -52,7 +52,9 @@ function TopReactions({ topReactions = [], onSelectedEmoji = () => {} }) {
         {topReactions.map((item, index) => (
           <span
             key={item.id}
-            className={ReactionEmojiStyles["emoji-button"]}
+            className={`${ReactionEmojiStyles["emoji-button"]} ${
+              isListPage ? ReactionEmojiStyles["list-page"] : ""
+            }`}
             onClick={() => handleEmojiSelect(item)}
           >
             <span className={ReactionEmojiStyles["emoji"]}>{item.emoji}</span>

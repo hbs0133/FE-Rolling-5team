@@ -35,3 +35,14 @@
 .menu-active {
   opacity: 1;
 }
+
+.dropdown.dark-theme {
+  color: var(--text-color-dark);
+
+  .trigger {
+    background-color: var(--background-color-dark);
+  }
+  .menu {
+    background: var(--background-color-dark);
+  }
+}

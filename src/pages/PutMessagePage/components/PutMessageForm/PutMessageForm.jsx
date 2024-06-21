@@ -8,9 +8,14 @@ import DropDown from "../DropDown/DropDown.jsx";
 import TextEditor from "../TextEditor/TextEditor.jsx";
 import Card from "../PreviewCard/PreviewCard.jsx";
 import Modal from "../Modal/Modal.jsx";
-import { getRecipientRollingPaper } from "../../../../services/api.js";
-import { getMessage } from "../../../../services/api.js";
-import { putMessage } from "../../../../services/api.js";
+import {
+  getRecipientRollingPaper,
+  getMessage,
+  putMessage,
+} from "../../../../services/api.js";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { storage } from "../../../../services/firebase";
+import defaultProfileImage from "../../../../assets/images/profile_image_default.jpg";
 
 const INITIAL_TEAM = "7-5";
 
@@ -32,6 +37,10 @@ const fontList = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 �
 
 const PutMessageForm = ({ id }) => {
   const [values, setValues] = useState(INITIAL_VALUES);
+  const [previewProfileImage, setPreviewProfileImage] =
+    useState(defaultProfileImage);
+  const [profileImageFile, setProfileImageFile] = useState(null);
+  const [isUpLoadImage, setIsUpLoadImage] = useState(false);
   const [recipientName, setRecipientName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
@@ -42,6 +51,26 @@ const PutMessageForm = ({ id }) => {
       ...prevValues,
       [valueName]: value,
     }));
+  };
+
+  const onImageChange = async () => {
+    const file = profileImageFile;
+    if (!file) {
+      setIsUpLoadImage(true);
+      return null;
+    }
+
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytes(storageRef, file);
+
+    try {
+      const snapshot = await uploadTask;
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      handleChange("profileImageURL", downloadURL);
+      setIsUpLoadImage(true);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   const handleLoadRecipientName = async (id) => {
@@ -94,6 +123,10 @@ const PutMessageForm = ({ id }) => {
     }
   }, [values.recipientId]);
 
+  useEffect(() => {
+    setPreviewProfileImage(values.profileImageURL);
+  }, [values.profileImageURL]);
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <InputSection
@@ -114,6 +147,9 @@ const PutMessageForm = ({ id }) => {
             valueName={"profileImageURL"}
             value={values.profileImageURL}
             onChange={handleChange}
+            previewProfileImage={previewProfileImage}
+            setPreviewProfileImage={setPreviewProfileImage}
+            setProfileImageFile={setProfileImageFile}
           />
         }
       />
@@ -151,13 +187,18 @@ const PutMessageForm = ({ id }) => {
       />
       <InputSection
         label={"메시지 미리보기"}
-        inputElement={<Card message={values} />}
+        inputElement={
+          <Card message={values} previewProfileImage={previewProfileImage} />
+        }
       />
       <Modal
         value={values}
         isSubmitting={isSubmitting}
         onSubmit={handleSubmit}
         recipientName={recipientName}
+        previewProfileImage={previewProfileImage}
+        onImageChange={onImageChange}
+        isUpLoadImage={isUpLoadImage}
       />
       {submittingError?.message && <div>{setIsSubmitting.message}</div>}
     </form>

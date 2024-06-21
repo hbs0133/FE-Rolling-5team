@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import postDropDownStyles from "./PostDropDown.module.scss";
 import arrowBottom from "../../../../assets/icons/arrow_bottom.svg";
 import arrowTop from "../../../../assets/icons/arrow_top.svg";
+import { useTheme } from "../../Context/ThemeContext";
 
 function PostDropDown({
   trigger = "",
@@ -17,6 +18,7 @@ function PostDropDown({
 }) {
   const [selectedItem, setSelectedItem] = useState(trigger);
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
 
   const handleSelect = (item) => {
     setSelectedItem(item);

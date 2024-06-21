@@ -76,7 +76,9 @@ const PostPage = () => {
       team: "7-5",
       name: e.target.name.value,
       backgroundColor: selectedColor,
-      backgroundImageURL: isColorSelected ? null : images[selectedImage].urls.full,
+      backgroundImageURL: isColorSelected
+        ? null
+        : images[selectedImage].urls.full,
     };
   };
   const handleSubmit = async (e) => {

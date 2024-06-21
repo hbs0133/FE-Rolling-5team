@@ -11,7 +11,6 @@ const FileInPut = ({
   const handleImageClick = (index) => {
     setSelectedImage(index);
   };
-
   return (
     <div>
       <ul className={PostStyles["image-wrapper"]}>

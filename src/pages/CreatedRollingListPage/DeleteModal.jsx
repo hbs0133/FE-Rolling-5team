@@ -7,8 +7,11 @@ const DeleteModal = ({
   setIsModal,
   setIsDeleteModal,
   deleteFunction,
+  theme,
   ...rest
 }) => {
+  const themeStyle = DeleteModalStyles[`${theme}-theme`];
+
   const handleCheckBtnClick = () => {
     deleteFunction(id);
 
@@ -35,8 +38,12 @@ const DeleteModal = ({
   };
   return (
     <div {...rest} className={DeleteModalStyles["background-opacity"]}>
-      <div className={DeleteModalStyles["deleteModal-container"]}>
-        <div className={DeleteModalStyles["deleteModal-checkMessage"]}>
+      <div
+        className={`${DeleteModalStyles["deleteModal-container"]} ${themeStyle}`}
+      >
+        <div
+          className={`${DeleteModalStyles["deleteModal-checkMessage"]} ${themeStyle}`}
+        >
           <h2>
             {name}님의
             <br />

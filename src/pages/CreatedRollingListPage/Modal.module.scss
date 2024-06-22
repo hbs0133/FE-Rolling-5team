@@ -21,6 +21,10 @@
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
     background-color: #fff;
 
+    &.dark-theme {
+      background-image: var(--background-color-dark);
+    }
+
     .close-btn {
       display: flex;
       justify-content: center;
@@ -61,6 +65,10 @@
         .profile-name {
           font-size: 20px;
 
+          &.dark-theme {
+            color: var(--white);
+          }
+
           & > span {
             font-weight: 700;
           }
@@ -71,6 +79,10 @@
         @include font_regular_14;
         color: var(--gray-400);
         letter-spacing: -0.5%;
+
+        &.dark-theme {
+          color: var(--gray-100);
+        }
       }
     }
 
@@ -82,6 +94,10 @@
       line-height: 28px;
       letter-spacing: -1%;
       color: #5a5a5a;
+
+      &.dark-theme {
+        color: var(--white);
+      }
     }
 
     .button-wrap {

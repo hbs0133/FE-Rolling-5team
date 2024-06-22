@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { InView } from "react-intersection-observer";
+import ClipLoader from "react-spinners/ClipLoader";
 import ListStyles from "./CreatedRollingListPage.module.scss";
 import Modal from "./Modal";
 import Card from "./Card";
 import DeleteBtn from "./DeleteBtn";
 import DeleteModal from "./DeleteModal";
 import plusEnabledIcon from "../../assets/icons/plusbtn_enabled_ic.svg";
-import arrowBackIcon from "../../assets/icons/arrow_back_left_icon.svg";
-import purpleArrowBackIcon from "../../assets/icons/purple_arrow_back_left_icon.svg";
 import {
   getRecipientRollingPaper,
   getRecipientMessages,
   deleteRollingPaper,
   deleteMessage,
 } from "../../services/api";
+import { useTheme } from "../../components/UI/Theme/ThemeContext";
 
 const CreatedRollingListPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  const themeStyle = ListStyles[`${theme}-theme`];
 
   const [isLoading, setIsLoading] = useState(false);
   const [rollingCard, setRollingCard] = useState({
@@ -83,7 +85,7 @@ const CreatedRollingListPage = () => {
 
   async function fetchRecipientRollingPaper() {
     try {
-      setIsLoading(false);
+      setIsLoading(true);
       const recipient = await getRecipientRollingPaper({
         id: id,
       });
@@ -102,7 +104,7 @@ const CreatedRollingListPage = () => {
         ...message,
       }));
 
-      setIsLoading(true);
+      setIsLoading(false);
     } catch (error) {
       console.error("Failed to fetch recipient:", error);
     }
@@ -165,77 +167,88 @@ const CreatedRollingListPage = () => {
           : { backgroundColor: `var(--${rollingCard.backgroundColor}-200)` }
       }
     >
-      <div className={ListStyles["list-container"]}>
-        {rollingRecentMessages.results.map((recent) =>
-          isModal.modalId === recent.id ? (
-            <Modal
-              setIsModal={setIsModal}
-              setIsDeleteModal={setIsDeleteModal}
-              recentMessages={recent}
-              key={recent.id}
-            />
-          ) : null
-        )}
-        {rollingRecentMessages.results.map((recent) =>
-          isDeleteModal.rollingRecentMessagesId === recent.id ? (
-            <DeleteModal
-              name={recent.sender}
-              title="메세지"
-              id={recent.id}
-              setIsModal={setIsModal}
-              setIsDeleteModal={setIsDeleteModal}
-              deleteFunction={deleteRecentMessage}
-              key={recent.id}
-            />
-          ) : null
-        )}
-
-        {isDeleteModal.isModal && (
-          <DeleteModal
-            name={rollingCard.name}
-            title="롤링페이퍼"
-            id={rollingCard.id}
-            setIsModal={setIsModal}
-            setIsDeleteModal={setIsDeleteModal}
-            deleteFunction={deleteRecipient}
+      {isLoading ? (
+        <div className={ListStyles["loading-spinner"]}>
+          <ClipLoader
+            color="#cccccc"
+            loading={isLoading}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
           />
-        )}
-        <div className={ListStyles["flex-end"]}>
-          <Link to="/list">
-            <button className={ListStyles["back-btn"]}>
-              <img
-                src={arrowBackIcon}
-                alt="뒤로가기버튼"
-                onMouseEnter={(e) => (e.target.src = purpleArrowBackIcon)}
-                onMouseLeave={(e) => (e.target.src = arrowBackIcon)}
+        </div>
+      ) : (
+        <div className={ListStyles["list-container"]}>
+          {rollingRecentMessages.results.map((recent) =>
+            isModal.modalId === recent.id ? (
+              <Modal
+                setIsModal={setIsModal}
+                setIsDeleteModal={setIsDeleteModal}
+                recentMessages={recent}
+                theme={theme}
+                key={recent.id}
               />
-            </button>
-          </Link>
-          <DeleteBtn onClick={handleDeleteBtnClick} />
+            ) : null
+          )}
+          {rollingRecentMessages.results.map((recent) =>
+            isDeleteModal.rollingRecentMessagesId === recent.id ? (
+              <DeleteModal
+                name={recent.sender}
+                title="메세지"
+                id={recent.id}
+                setIsModal={setIsModal}
+                setIsDeleteModal={setIsDeleteModal}
+                deleteFunction={deleteRecentMessage}
+                theme={theme}
+                key={recent.id}
+              />
+            ) : null
+          )}
+
+          {isDeleteModal.isModal && (
+            <DeleteModal
+              name={rollingCard.name}
+              title="롤링페이퍼"
+              id={rollingCard.id}
+              setIsModal={setIsModal}
+              setIsDeleteModal={setIsDeleteModal}
+              deleteFunction={deleteRecipient}
+              theme={theme}
+            />
+          )}
+          <div className={ListStyles["flex-end"]}>
+            <DeleteBtn onClick={handleDeleteBtnClick} />
+          </div>
+          <div className={ListStyles["list-wrap"]}>
+            <Link
+              to={`/post/${id}/message`}
+              className={ListStyles["create-link"]}
+            >
+              <div
+                className={`${ListStyles["create-container"]} ${themeStyle}`}
+              >
+                <button type="button" className={ListStyles["create-btn"]}>
+                  <img src={plusEnabledIcon} alt="카드생성아이콘" />
+                </button>
+              </div>
+            </Link>
+            {rollingRecentMessages.results.map((recent, index) => (
+              <div key={recent.id}>
+                <Card
+                  recentMessages={recent}
+                  setIsModal={setIsModal}
+                  theme={theme}
+                />
+                {index === rollingRecentMessages.results.length - 1 && (
+                  <InView onChange={(inView) => inView && fetchMoreMessages()}>
+                    <div></div>
+                  </InView>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={ListStyles["list-wrap"]}>
-          <Link
-            to={`/post/${id}/message`}
-            className={ListStyles["create-link"]}
-          >
-            <div className={ListStyles["create-container"]}>
-              <button type="button" className={ListStyles["create-btn"]}>
-                <img src={plusEnabledIcon} alt="카드생성아이콘" />
-              </button>
-            </div>
-          </Link>
-          {rollingRecentMessages.results.map((recent, index) => (
-            <div key={recent.id}>
-              <Card recentMessages={recent} setIsModal={setIsModal} />
-              {index === rollingRecentMessages.results.length - 1 && (
-                <InView onChange={(inView) => inView && fetchMoreMessages()}>
-                  <div></div>
-                </InView>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

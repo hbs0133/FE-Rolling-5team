@@ -2,9 +2,18 @@ import { Link } from "react-router-dom";
 import ModalStyles from "./Modal.module.scss";
 import Button from "../../components/UI/Button/Button";
 import Badge from "./Badge";
-import closeIcon from "../../assets/icons/close_icon.svg";
+import closeBlackIcon from "../../assets/icons/close_black_icon.svg";
+import closeWhiteIcon from "../../assets/icons/close_white_icon.svg";
 
-const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
+const Modal = ({
+  setIsModal,
+  setIsDeleteModal,
+  recentMessages,
+  theme,
+  ...rest
+}) => {
+  const themeStyle = ModalStyles[`${theme}-theme`];
+
   const handleCheckClick = () => {
     setIsModal((prev) => ({
       ...prev,
@@ -22,9 +31,12 @@ const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
 
   return (
     <div {...rest} className={ModalStyles["background-opacity"]}>
-      <div className={ModalStyles.container}>
+      <div className={`${ModalStyles.container} ${themeStyle}`}>
         <button onClick={handleCheckClick} className={ModalStyles["close-btn"]}>
-          <img src={closeIcon} alt="닫기버튼" />
+          <img
+            src={theme === "dark" ? closeWhiteIcon : closeBlackIcon}
+            alt="닫기버튼"
+          />
         </button>
         <div className={ModalStyles["profile-wrap"]}>
           <div>
@@ -34,18 +46,18 @@ const Modal = ({ setIsModal, setIsDeleteModal, recentMessages, ...rest }) => {
               className={ModalStyles["profile-img"]}
             />
             <div>
-              <h2 className={ModalStyles["profile-name"]}>
+              <h2 className={`${ModalStyles["profile-name"]} ${themeStyle}`}>
                 From. <span>{recentMessages.sender}</span>
               </h2>
               <Badge>{recentMessages.relationship}</Badge>
             </div>
           </div>
-          <div className={ModalStyles.date}>
+          <div className={`${ModalStyles.date} ${themeStyle}`}>
             {recentMessages.createdAt.replace(/-/g, ".").split("T")[0]}
           </div>
         </div>
         <p
-          className={ModalStyles.description}
+          className={`${ModalStyles.description} ${themeStyle}`}
           dangerouslySetInnerHTML={{ __html: recentMessages.content }}
           style={
             recentMessages.font === "나눔손글씨 손편지체"

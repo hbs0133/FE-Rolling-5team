@@ -24,6 +24,10 @@
     border-radius: 20px;
     background-color: var(--white);
 
+    &.dark-theme {
+      background-image: var(--background-color-dark);
+    }
+
     .deleteModal-checkMessage {
       h2 {
         width: 300px;
@@ -42,6 +46,16 @@
         @include font_regular_14;
         color: var(--gray-400);
         text-align: center;
+      }
+
+      &.dark-theme {
+        h2 {
+          color: var(--white);
+        }
+
+        div {
+          color: var(--gray-100);
+        }
       }
     }
 

@@ -1,10 +1,7 @@
-import { useState } from "react";
 import CardStyles from "./Card.module.scss";
 import Badge from "./Badge";
-import { useTheme } from "../../components/UI/Theme/ThemeContext";
 
-const Card = ({ recentMessages, setIsModal, ...rest }) => {
-  const { theme } = useTheme();
+const Card = ({ recentMessages, setIsModal, theme, ...rest }) => {
   const themeStyle = CardStyles[`${theme}-theme`];
 
   const handleCardClick = () => {

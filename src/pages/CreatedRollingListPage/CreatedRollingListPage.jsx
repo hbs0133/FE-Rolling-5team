@@ -185,6 +185,7 @@ const CreatedRollingListPage = () => {
                 setIsModal={setIsModal}
                 setIsDeleteModal={setIsDeleteModal}
                 recentMessages={recent}
+                theme={theme}
                 key={recent.id}
               />
             ) : null
@@ -198,6 +199,7 @@ const CreatedRollingListPage = () => {
                 setIsModal={setIsModal}
                 setIsDeleteModal={setIsDeleteModal}
                 deleteFunction={deleteRecentMessage}
+                theme={theme}
                 key={recent.id}
               />
             ) : null
@@ -211,6 +213,7 @@ const CreatedRollingListPage = () => {
               setIsModal={setIsModal}
               setIsDeleteModal={setIsDeleteModal}
               deleteFunction={deleteRecipient}
+              theme={theme}
             />
           )}
           <div className={ListStyles["flex-end"]}>
@@ -231,7 +234,11 @@ const CreatedRollingListPage = () => {
             </Link>
             {rollingRecentMessages.results.map((recent, index) => (
               <div key={recent.id}>
-                <Card recentMessages={recent} setIsModal={setIsModal} />
+                <Card
+                  recentMessages={recent}
+                  setIsModal={setIsModal}
+                  theme={theme}
+                />
                 {index === rollingRecentMessages.results.length - 1 && (
                   <InView onChange={(inView) => inView && fetchMoreMessages()}>
                     <div></div>

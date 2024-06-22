@@ -65,11 +65,16 @@
   height: 56px;
 }
 
+#button {
+  padding: 0;
+}
+
 .buttonLink {
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 56px;
+  align-items: center;
+  height: 100%;
 }
 a {
   color: var(--white);

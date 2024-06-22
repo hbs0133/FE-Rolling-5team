@@ -68,7 +68,7 @@ function ListPage() {
           )}
         </div>
         <div className={styles.buttonContainer}>
-          <Button widthMax={isMobile}>
+          <Button widthMax={isMobile} className={styles.button}>
             <Link to="/post" className={styles.buttonLink}>
               나도 만들어 보기
             </Link>

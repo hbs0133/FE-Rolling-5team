@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import modalStyles from "./Modal.module.scss";
 import Button from "../../../../components/UI/Button/Button";
 import Card from "../Card/Card";
+import { useTheme } from "../../../../components/UI/Theme/ThemeContext";
 
 const Modal = ({
   value,
@@ -12,6 +13,8 @@ const Modal = ({
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
+  const { theme } = useTheme();
+  const themeStyle = modalStyles[`${theme}-theme`];
 
   const handleOnClickOpen = () => {
     setModalOpen(true);
@@ -42,7 +45,7 @@ const Modal = ({
       </Button>
       {modalOpen && (
         <div
-          className={modalStyles["modal-container"]}
+          className={`${modalStyles["modal-container"]} ${themeStyle}`}
           ref={modalBackground}
           onClick={(e) => {
             if (e.target === modalBackground.current) {

@@ -55,7 +55,8 @@ const PutMessageForm = ({ id }) => {
   const onImageChange = async () => {
     const file = profileImageFile;
     if (!file) {
-      return null;
+      const downloadURL = INITIAL_PROFILEIMAGEURL;
+      return downloadURL;
     }
 
     const storageRef = ref(storage, `files/${file.name}`);

@@ -1,9 +1,12 @@
 import CardStyles from "./PreviewCard.module.scss";
 import Badge from "./Badge";
 import "./quill.css";
+import { useTheme } from "../../../../components/UI/Theme/ThemeContext";
 
 const Card = ({ message, previewProfileImage }) => {
   const { sender, profileImageURL, relationship, content, font } = message;
+  const { theme } = useTheme();
+  const themeStyle = CardStyles[`${theme}-theme`];
 
   const getFormattedDate = () => {
     const today = new Date();
@@ -33,7 +36,7 @@ const Card = ({ message, previewProfileImage }) => {
   return (
     <>
       <div
-        className={`${CardStyles.container} ${
+        className={`${CardStyles.container} ${themeStyle} ${
           sender && content && CardStyles.validAnimation
         }`}
       >

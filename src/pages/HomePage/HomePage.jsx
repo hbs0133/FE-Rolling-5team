@@ -1,15 +1,15 @@
-import HomeStyles from "./HomePage.module.scss";
-import { Link } from "react-router-dom";
-import homepage_01 from "../../assets/images/homepage_01.png";
-import homepage_02 from "../../assets/images/homepage_02.png";
-import Button from "../../components/UI/Button/Button";
+import HomeStyles from './HomePage.module.scss'
+import { Link } from 'react-router-dom'
+import homepage_01 from '../../assets/images/homepage_01.png'
+import homepage_02 from '../../assets/images/homepage_02.png'
+import Button from '../../components/UI/Button/Button'
 
 function HomePage() {
   return (
     <div className={HomeStyles.homepage}>
-      <div className={HomeStyles["homepage-wrapper"]}>
-        <section className={HomeStyles["homepage-section"]}>
-          <div className={HomeStyles["homepage-content"]}>
+      <div className={HomeStyles['homepage-wrapper']}>
+        <section className={HomeStyles['homepage-section']}>
+          <div className={HomeStyles['homepage-content']}>
             <span className={HomeStyles.point}>Point. 01</span>
             <h1 className={HomeStyles.h1}>
               누구나 손쉽게, 온라인 <br className={HomeStyles.hideOnTablet} />
@@ -27,9 +27,9 @@ function HomePage() {
         </section>
 
         <section
-          className={`${HomeStyles["homepage-section"]} ${HomeStyles.reverse}`}
+          className={`${HomeStyles['homepage-section']} ${HomeStyles.reverse}`}
         >
-          <div className={HomeStyles["homepage-content"]}>
+          <div className={HomeStyles['homepage-content']}>
             <span className={HomeStyles.point}>Point. 02</span>
             <h1 className={HomeStyles.h1}>
               서로에게 이모지로 감정을
@@ -48,13 +48,14 @@ function HomePage() {
           />
         </section>
       </div>
-      <Link to="/list">
-        <div className={HomeStyles.buttonContainer}>
-          <Button id={HomeStyles.button}>구경해보기</Button>
-        </div>
-      </Link>
+
+      <div className={HomeStyles.buttonContainer}>
+        <Button id={HomeStyles.button}>
+          <Link to="/list">구경해보기</Link>
+        </Button>
+      </div>
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

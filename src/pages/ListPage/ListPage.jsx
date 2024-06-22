@@ -1,29 +1,29 @@
-import CardList from "./component/CardList/CardList";
-import styles from "./ListPage.module.scss";
-import Button from "../../components/UI/Button/Button";
-import { useNavigate } from "react-router-dom";
-import useDevice from "../../hooks/useDevice";
-import { Link } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import { useEffect, useState } from "react";
-import { useTheme } from "../../components/UI/Theme/ThemeContext";
+import CardList from './component/CardList/CardList'
+import styles from './ListPage.module.scss'
+import Button from '../../components/UI/Button/Button'
+import { useNavigate } from 'react-router-dom'
+import useDevice from '../../hooks/useDevice'
+import { Link } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { useEffect, useState } from 'react'
+import { useTheme } from '../../components/UI/Theme/ThemeContext'
 
 function ListPage() {
-  const navigate = useNavigate();
-  const { isMobile, isPhone } = useDevice();
-  const [loading, setLoading] = useState(true);
-  const { theme } = useTheme();
+  const navigate = useNavigate()
+  const { isMobile, isPhone } = useDevice()
+  const [loading, setLoading] = useState(true)
+  const { theme } = useTheme()
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+      setLoading(false)
+    }, 2000)
+  }, [])
 
   const handleNavigationPostPage = (cardId) => {
-    navigate(`/post/${cardId}`);
-  };
+    navigate(`/post/${cardId}`)
+  }
 
   return (
     <>
@@ -68,14 +68,16 @@ function ListPage() {
           )}
         </div>
         <div className={styles.buttonContainer}>
-          <Link to="/post" className={styles.buttonLink}>
-            <Button widthMax={isMobile}>나도 만들어 보기</Button>
-          </Link>
+          <Button widthMax={isMobile}>
+            <Link to="/post" className={styles.buttonLink}>
+              나도 만들어 보기
+            </Link>
+          </Button>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default ListPage;
+export default ListPage
 //수정본 커밋 완성

@@ -52,7 +52,7 @@
 @media (min-width: 360px) and (max-width: 767px) {
   .container {
     height: 100%;
-    padding: 50px 20px;
+    padding: 50px 0;
   }
   .hot {
     margin-bottom: 74px;
@@ -64,6 +64,7 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 30px;
+    padding-left: 20px;
   }
 
   .skeleton {
@@ -72,12 +73,15 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1919px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .container {
     height: 100%;
-    padding: 40px 24px;
+    padding: 40px 0;
   }
   .new {
     margin-bottom: 156px;
+  }
+  .h1 {
+    padding-left: 24px;
   }
 }

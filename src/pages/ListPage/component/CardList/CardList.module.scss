@@ -37,11 +37,27 @@
 @media (min-width: 360px) and (max-width: 767px) {
   .swiperSlide {
     width: 208px !important;
+
+    &:first-child {
+      margin-left: 20px;
+    }
+
+    &:last-child {
+      margin-right: 20px;
+    }
   }
 }
 
-@media (min-width: 768px) and (max-width: 1919px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .swiperSlide {
     width: 275px !important;
+
+    &:first-child {
+      margin-left: 24px;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+    }
   }
 }

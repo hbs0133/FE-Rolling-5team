@@ -17,6 +17,10 @@
   line-height: 36px;
   color: var(--black);
   margin-bottom: 16px;
+
+  &.dark-theme {
+    color: var(--color-text);
+  }
 }
 
 .hot {

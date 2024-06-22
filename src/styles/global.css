@@ -75,8 +75,8 @@ body {
   /*Theme colors*/
   --background-color-light: #fff;
   --background-color-dark: #29323c;
-  --text-color-light: #000;
-  --text-color-dark: #f3ecec;
+  --text-color-light: var(--black);
+  --text-color-dark: var(--white);
 }
 
 * {

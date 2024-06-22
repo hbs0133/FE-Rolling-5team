@@ -20,7 +20,7 @@ function TopReactions({ topReactions = [], onSelectedEmoji = () => {} }) {
   const transitions = [
     useTransition(counts[0], {
       from: { opacity: 0, transform: "translateY(-10px)" },
-      enter: { opacity: 1, transform: "translateY(0)" },
+      enter: { opacity: 1, transform: "translatefY(0)" },
       leave: { opacity: 0, transform: "translateY(10px)" },
       config: { duration: 300 },
     }),

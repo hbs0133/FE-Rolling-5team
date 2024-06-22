@@ -9,15 +9,12 @@ const Modal = ({
   onSubmit,
   recipientName,
   previewProfileImage,
-  onImageChange,
-  isUpLoadImage,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
 
   const handleOnClickOpen = () => {
     setModalOpen(true);
-    onImageChange();
   };
 
   useEffect(() => {
@@ -59,8 +56,8 @@ const Modal = ({
             </p>
             <Card message={value} previewProfileImage={previewProfileImage} />
             <div className={modalStyles["modal-buttons"]}>
-              <Button size="small" onClick={onSubmit} disable={!isUpLoadImage}>
-                {!isUpLoadImage ? "로딩중" : "수정하기"}
+              <Button size="small" onClick={onSubmit}>
+                수정하기
               </Button>
               <Button
                 size="small"

@@ -40,7 +40,6 @@ const PutMessageForm = ({ id }) => {
   const [previewProfileImage, setPreviewProfileImage] =
     useState(defaultProfileImage);
   const [profileImageFile, setProfileImageFile] = useState(null);
-  const [isUpLoadImage, setIsUpLoadImage] = useState(false);
   const [recipientName, setRecipientName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
@@ -56,7 +55,6 @@ const PutMessageForm = ({ id }) => {
   const onImageChange = async () => {
     const file = profileImageFile;
     if (!file) {
-      setIsUpLoadImage(true);
       return null;
     }
 
@@ -64,10 +62,9 @@ const PutMessageForm = ({ id }) => {
     const uploadTask = uploadBytes(storageRef, file);
 
     try {
-      const snapshot = await uploadTask;
+      const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
-      handleChange("profileImageURL", downloadURL);
-      setIsUpLoadImage(true);
+      return downloadURL;
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -96,11 +93,13 @@ const PutMessageForm = ({ id }) => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
+      const downloadURL = await onImageChange();
       await putMessage(
         {
           ...values,
           recipientId: Number(values.recipientId),
           team: INITIAL_TEAM,
+          profileImageURL: downloadURL,
         },
         id
       );
@@ -197,8 +196,6 @@ const PutMessageForm = ({ id }) => {
         onSubmit={handleSubmit}
         recipientName={recipientName}
         previewProfileImage={previewProfileImage}
-        onImageChange={onImageChange}
-        isUpLoadImage={isUpLoadImage}
       />
       {submittingError?.message && <div>{setIsSubmitting.message}</div>}
     </form>

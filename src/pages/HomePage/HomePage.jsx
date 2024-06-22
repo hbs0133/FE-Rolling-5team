@@ -51,7 +51,9 @@ function HomePage() {
 
       <div className={HomeStyles.buttonContainer}>
         <Button id={HomeStyles.button}>
-          <Link to="/list">구경해보기</Link>
+          <Link to="/list" className={HomeStyles.buttonLink}>
+            구경해보기
+          </Link>
         </Button>
       </div>
     </div>

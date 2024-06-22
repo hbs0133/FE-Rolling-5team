@@ -64,6 +64,13 @@
   margin: 48px auto 0;
   height: 56px;
 }
+
+.buttonLink {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 56px;
+}
 a {
   color: var(--white);
 }

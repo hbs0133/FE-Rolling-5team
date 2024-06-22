@@ -22,6 +22,7 @@ function Header() {
 
   const { theme } = useTheme();
   const themeStyle = HeaderStyles[`${theme}-theme`];
+  const isCreatedButtonVisible = isPage.isHomePage || isPage.isListPage;
 
   useEffect(() => {
     setIsPage({
@@ -39,8 +40,8 @@ function Header() {
         <div className={HeaderStyles.header}>
           <RollingPaperLogo theme={theme} />
           <div className={HeaderStyles["button-wrapper"]}>
-            <ThemedButton />
-            {(isPage.isHomePage || isPage.isListPage) && <CreateRollingPaper />}
+            <ThemedButton isCreatedButtonVisible={isCreatedButtonVisible} />
+            {isCreatedButtonVisible && <CreateRollingPaper />}
           </div>
         </div>
       </header>

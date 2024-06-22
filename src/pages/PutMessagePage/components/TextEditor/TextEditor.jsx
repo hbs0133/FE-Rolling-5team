@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "./TextEditor.css";
+import "./TextEditor.scss";
+import { useTheme } from "../../../../components/UI/Theme/ThemeContext";
 
 const formats = [
   "font",
@@ -23,6 +24,7 @@ const formats = [
 ];
 
 const TextEditor = ({ valueName, onChange }) => {
+  const { theme } = useTheme();
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -52,6 +54,7 @@ const TextEditor = ({ valueName, onChange }) => {
       modules={modules}
       formats={formats}
       onChange={handleChange}
+      className={theme}
     />
   );
 };

@@ -14,6 +14,7 @@ import {
   getRecipientRollingPaper,
   postMessage,
 } from "../../../../services/api.js";
+
 import defaultProfileImage from "../../../../assets/images/profile_image_default.jpg";
 
 const INITIAL_TEAM = "7-5";
@@ -54,7 +55,8 @@ const PostMessageForm = ({ id }) => {
   const onImageChange = async () => {
     const file = profileImageFile;
     if (!file) {
-      return null;
+      const downloadURL = INITIAL_PROFILEIMAGEURL;
+      return downloadURL;
     }
     const storageRef = ref(storage, `files/${file.name}`);
 

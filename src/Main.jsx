@@ -1,11 +1,11 @@
-import { Routes, Route } from 'react-router-dom'
-import App from './App'
-import HomePage from '../src/pages/HomePage/HomePage'
-import PostPage from './pages/PostPage/PostPage'
-import CreatedRollingListPage from './pages/CreatedRollingListPage/CreatedRollingListPage'
-import ListPage from './pages/ListPage/ListPage'
-import PostMessagePage from './pages/PostMessagePage/PostMessagePage'
-import PutMessagePage from './pages/PutMessagePage/PutMessagePage'
+import { Routes, Route } from "react-router-dom";
+import App from "./App";
+import HomePage from "../src/pages/HomePage/HomePage";
+import PostPage from "./pages/PostPage/PostPage";
+import CreatedRollingListPage from "./pages/CreatedRollingListPage/CreatedRollingListPage";
+import ListPage from "./pages/ListPage/ListPage";
+import PostMessagePage from "./pages/PostMessagePage/PostMessagePage";
+import PutMessagePage from "./pages/PutMessagePage/PutMessagePage";
 
 function Main() {
   return (
@@ -21,7 +21,7 @@ function Main() {
         <Route path="/put/:id/message" element={<PutMessagePage />} />
       </Route>
     </Routes>
-  )
+  );
 }
 
-export default Main
+export default Main;

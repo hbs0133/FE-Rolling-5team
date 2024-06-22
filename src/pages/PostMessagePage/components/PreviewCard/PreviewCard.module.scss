@@ -52,7 +52,6 @@
       }
     }
   }
-
   .description {
     margin-top: 16px;
     height: 106px;
@@ -61,11 +60,11 @@
     line-height: 28px;
     letter-spacing: -1%;
     color: var(--gray-600);
-  }
-  .description.invalid {
-    color: var(--error-red);
-    @include font-bold-18;
-    animation: blink 1.3s infinite ease-in-out;
+    &.invalid {
+      color: var(--error-red) !important;
+      @include font-bold-18;
+      animation: blink 1.3s infinite ease-in-out;
+    }
   }
 
   .date {
@@ -74,6 +73,16 @@
     line-height: 18px;
     letter-spacing: -0.5%;
     color: var(--gray-400);
+  }
+  &.dark-theme {
+    background-color: var(--background-color-dark);
+    box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.1);
+    .profile-name {
+      color: var(--text-color-dark);
+    }
+    .description {
+      color: var(--text-color-dark);
+    }
   }
 }
 
@@ -119,26 +128,6 @@
     opacity: 0.4;
   }
 }
-
-// @media screen and (min-width: 1248px) {
-// }
-
-// @media screen and (min-width: 768px) and (max-width: 1247px) {
-//   .container {
-//     width: 100%;
-//     height: 284px;
-
-//     .description {
-//       margin-top: 16px;
-//       height: 110px;
-//       overflow: hidden;
-//       @include font_regular_18;
-//       line-height: 28px;
-//       letter-spacing: -1%;
-//       color: var(--gray-600);
-//     }
-//   }
-// }
 
 @media screen and (max-width: 767px) {
   .container {

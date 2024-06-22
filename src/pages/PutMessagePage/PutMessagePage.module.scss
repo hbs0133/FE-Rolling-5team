@@ -107,6 +107,24 @@
       margin-bottom: 60px;
     }
   }
+  &.dark-theme {
+    .input-wrapper {
+      label {
+        color: var(--text-color-dark);
+      }
+      input[type="text"] {
+        background-color: var(--background-color-dark);
+        color: var(--text-color-dark);
+      }
+      .profile-preview-wrapper {
+        .profile-image-pickker-container {
+          p {
+            color: var(--text-color-dark);
+          }
+        }
+      }
+    }
+  }
 }
 
 .sCoreDream {

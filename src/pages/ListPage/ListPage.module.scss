@@ -36,11 +36,16 @@
   justify-content: center;
 }
 
+.button {
+  padding: 0;
+}
+
 .buttonLink {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  height: 56px;
+  align-items: center;
 }
 
 .cardList {

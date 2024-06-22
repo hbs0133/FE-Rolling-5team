@@ -45,7 +45,7 @@ function ListPage() {
           )}
         </div>
         <div className={styles.new}>
-          <h1 className={styles.h1}>최근에 만든 롤링 페이퍼⭐</h1>
+          <h1 className={styles.h1}>최근에 만든 롤링 페이퍼 ⭐️️</h1>
           {loading ? (
             <div className={styles.cardList}>
               <Skeleton className={styles.skeleton} />

@@ -12,7 +12,7 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
-  background-image: var(--background-color);
+  background-color: var(--background-color);
 }
 
 html,
@@ -74,7 +74,7 @@ body {
 
   /*Theme colors*/
   --background-color-light: #fff;
-  --background-color-dark: linear-gradient(-20deg, #164463 0%, #4e4376 100%);
+  --background-color-dark: #29323c;
   --text-color-light: #000;
   --text-color-dark: #f3ecec;
 }

@@ -25,7 +25,7 @@
     background-color: var(--white);
 
     &.dark-theme {
-      background-image: var(--background-color-dark);
+      background-color: var(--background-color-dark);
     }
 
     .deleteModal-checkMessage {

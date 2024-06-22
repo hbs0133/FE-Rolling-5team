@@ -22,7 +22,7 @@
     background-color: #fff;
 
     &.dark-theme {
-      background-image: var(--background-color-dark);
+      background-color: var(--background-color-dark);
     }
 
     .close-btn {

@@ -2,13 +2,13 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import CumulativeUsers from "./components/CumulativeUsers";
-import ExternalSharing from "./components/ExternalSharing";
 import ReactionSession from "./components/ReactionSession";
 import HeaderServiceStyles from "./HeaderService.module.scss";
 import useRecipientData from "../../../hooks/useRecipientReactionData";
 import useDevice from "../../../hooks/useDevice";
 import { useParams } from "react-router-dom";
 import { useTheme } from "../../UI/Theme/ThemeContext";
+import ShareDropdown from "../../UI/Dropdown/components/ShareDropdown";
 
 function HeaderService() {
   const { id } = useParams();
@@ -53,7 +53,7 @@ function HeaderService() {
           <div
             className={`${HeaderServiceStyles["vertical-divider"]} ${HeaderServiceStyles["second-line"]}`}
           ></div>
-          <ExternalSharing />
+          <ShareDropdown />
         </div>
       </div>
     </div>

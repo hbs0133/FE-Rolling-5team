@@ -1,12 +1,32 @@
+.themed-button-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  --created-button: 157px;
+  --init-gap: 15px;
+  --header-margin: 24px;
+  --init-position: calc(var(--created-button) + var(--init-gap));
+}
+
 .switch {
   width: 60px;
   height: 33px;
   background-color: var(--purple-600);
   border-radius: 32px;
   border: 2px solid var(--gray-100);
-  position: relative;
+  position: absolute;
+  right: var(--init-position);
   border: none;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.switch.un-moving {
+  transform: translateX(0px);
+}
+
+.switch.moving {
+  transform: translateX(var(--init-position));
 }
 
 .circle {
@@ -27,16 +47,12 @@
   width: 25px;
   height: 25px;
   position: absolute;
-
   top: 50%;
   left: 25%;
   transform: translate(-50%, -50%);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  // background-color: var(--white);
   border-radius: 50px;
 }
 
@@ -46,7 +62,6 @@
 }
 
 .switch.dark-theme {
-  // background-color: var(--white);
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
   .circle {
@@ -57,7 +72,6 @@
       width: 100%;
       height: 100%;
       border-radius: 999px;
-
       background-color: rgba(0, 0, 0, 0.3);
       box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     }
@@ -65,5 +79,34 @@
 
   .theme-button {
     left: 75%;
+  }
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .themed-button-main {
+    --init-position: calc(
+      var(--created-button) + var(--init-gap) + var(--header-margin)
+    );
+  }
+
+  .switch.moving {
+    transform: translateX(calc(var(--init-position) - var(--header-margin)));
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .themed-button-main {
+    --init-gap: 8px;
+    --header-margin: 16px;
+
+    --init-position: calc(
+      var(--created-button) + var(--init-gap) + var(--header-margin)
+    );
+  }
+
+  .switch.moving {
+    transform: translateX(calc(var(--init-position) - var(--header-margin)));
   }
 }

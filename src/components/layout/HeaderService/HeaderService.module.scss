@@ -15,6 +15,11 @@
   top: -2px;
   z-index: 5;
 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   .header-service {
     width: 1200px;
     margin: auto;
@@ -94,8 +99,9 @@
       .user-name {
         width: 100%;
         padding: 12px 20px;
-        border: 1px solid var(--gray-200);
+        border-bottom: 1px solid var(--gray-200);
       }
+
       .service-wrapper {
         width: 100%;
         padding: 8px 20px;
@@ -103,6 +109,10 @@
 
         .second-line {
           margin: 0 15px;
+        }
+
+        .reaction-session {
+          gap: 30px;
         }
       }
     }

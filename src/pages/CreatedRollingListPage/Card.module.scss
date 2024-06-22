@@ -11,6 +11,10 @@
   transition: 0.3s;
   cursor: pointer;
 
+  &.dark-theme {
+    background-image: var(--background-color-dark);
+  }
+
   &:hover {
     transform: scale(1.05);
     transition: 0.3s;
@@ -45,6 +49,10 @@
         text-overflow: ellipsis;
         overflow: hidden;
 
+        &.dark-theme {
+          color: var(--white);
+        }
+
         & > span {
           font-weight: 700;
         }
@@ -60,6 +68,10 @@
     line-height: 28px;
     letter-spacing: -1%;
     color: var(--gray-600);
+
+    &.dark-theme {
+      color: var(--white);
+    }
   }
 
   .date {
@@ -68,6 +80,10 @@
     line-height: 18px;
     letter-spacing: -0.5%;
     color: var(--gray-400);
+
+    &.dark-theme {
+      color: var(--gray-100);
+    }
   }
 }
 

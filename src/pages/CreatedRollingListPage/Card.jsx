@@ -1,8 +1,12 @@
 import { useState } from "react";
 import CardStyles from "./Card.module.scss";
 import Badge from "./Badge";
+import { useTheme } from "../../components/UI/Theme/ThemeContext";
 
 const Card = ({ recentMessages, setIsModal, ...rest }) => {
+  const { theme } = useTheme();
+  const themeStyle = CardStyles[`${theme}-theme`];
+
   const handleCardClick = () => {
     setIsModal((prev) => ({
       ...prev,
@@ -13,7 +17,11 @@ const Card = ({ recentMessages, setIsModal, ...rest }) => {
 
   return (
     <>
-      <div {...rest} className={CardStyles.container} onClick={handleCardClick}>
+      <div
+        {...rest}
+        className={`${CardStyles.container} ${themeStyle}`}
+        onClick={handleCardClick}
+      >
         <div className={CardStyles["profile-wrap"]}>
           <div>
             <img
@@ -22,7 +30,7 @@ const Card = ({ recentMessages, setIsModal, ...rest }) => {
               className={CardStyles["profile-img"]}
             />
             <div>
-              <h2 className={CardStyles["profile-name"]}>
+              <h2 className={`${CardStyles["profile-name"]} ${themeStyle}`}>
                 From. <span>{recentMessages.sender}</span>
               </h2>
               <Badge>{recentMessages.relationship}</Badge>
@@ -30,7 +38,7 @@ const Card = ({ recentMessages, setIsModal, ...rest }) => {
           </div>
         </div>
         <p
-          className={CardStyles.description}
+          className={`${CardStyles.description} ${themeStyle}`}
           dangerouslySetInnerHTML={{ __html: recentMessages.content }}
           style={
             recentMessages.font === "나눔손글씨 손편지체"
@@ -38,7 +46,7 @@ const Card = ({ recentMessages, setIsModal, ...rest }) => {
               : { fontFamily: recentMessages.font }
           }
         ></p>
-        <div className={CardStyles.date}>
+        <div className={`${CardStyles.date} ${themeStyle}`}>
           {recentMessages.createdAt.replace(/-/g, ".").split("T")[0]}
         </div>
       </div>

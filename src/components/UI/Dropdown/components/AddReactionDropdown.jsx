@@ -3,7 +3,6 @@ import AddReactionDropdownStyles from "./AddReactionDropdown.module.scss";
 import addEmojiImage from "../../../../assets/icons/ic_add-emoji.svg";
 import emojiData from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import useDevice from "../../../../hooks/useDevice";
 import { useTheme } from "../../Theme/ThemeContext";
 
 export function AddReactionDropdown({ onSelectedEmoji = () => {} }) {
@@ -11,7 +10,6 @@ export function AddReactionDropdown({ onSelectedEmoji = () => {} }) {
     onSelectedEmoji(emoji);
   };
 
-  const { mobile } = useDevice();
   const { theme } = useTheme();
   const themeStyle = AddReactionDropdownStyles[`${theme}-theme`];
 
@@ -26,12 +24,11 @@ export function AddReactionDropdown({ onSelectedEmoji = () => {} }) {
             alt="이모지 추가"
             className={AddReactionDropdownStyles.image}
           />
-          {!mobile && (
-            <span className={AddReactionDropdownStyles.text}>추가</span>
-          )}
+          <span className={AddReactionDropdownStyles.text}>추가</span>
         </div>
       }
       triggerClassName={`${AddReactionDropdownStyles.trigger} ${themeStyle}`}
+      menuClassName={AddReactionDropdownStyles.menu}
     >
       <div className={AddReactionDropdownStyles["emoji-container"]}>
         <Picker

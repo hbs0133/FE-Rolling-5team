@@ -41,3 +41,10 @@
 .dark-theme.trigger:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .trigger {
+    padding: 6px 8px;
+  }
+}

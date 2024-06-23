@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import Stars from "../Star/Stars";
 
 const ThemeContext = createContext();
 
@@ -24,6 +25,7 @@ export const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {theme === "dark" && <Stars count={10} />}
       {children}
     </ThemeContext.Provider>
   );

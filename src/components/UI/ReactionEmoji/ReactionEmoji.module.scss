@@ -1,0 +1,80 @@
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.emoji-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+}
+
+.emoji-container .emoji-button {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--white);
+  width: 66px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.54);
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 2px;
+  padding: 8px 12px;
+}
+
+.emoji-container .emoji-button .emoji {
+  z-index: 1;
+  white-space: nowrap;
+  @include font-style(16px, 400, 20px, var(--white));
+}
+
+.count-ani {
+  display: flex;
+  flex-direction: column;
+}
+
+.emoji-container .emoji-button:hover {
+  background: linear-gradient(45deg, #ff7b7b, #42e695, #4d7aff, #ff7b7b);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+.emoji-button.list-page {
+  cursor: default;
+}
+
+@media (max-width: 760px) {
+  .emoji-container {
+    width: 175px;
+  }
+
+  .emoji-container .emoji-button {
+    width: 53px;
+    height: 28px;
+    padding: 4px 8px;
+  }
+
+  .emoji-container .emoji-button .emoji {
+    @include font-style(14px, 400, 20px, var(--white));
+    letter-spacing: -0.05em;
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

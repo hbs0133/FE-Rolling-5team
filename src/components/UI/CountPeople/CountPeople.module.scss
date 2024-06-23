@@ -1,0 +1,20 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import "../../../styles/common.scss";
+
+.countpeople {
+  @include font_bold_16;
+
+  @media (max-width: 768px) {
+    @include font_bold_14;
+  }
+}
+
+.countText {
+  @include font_regular_16;
+  // p태그 줄바꿈으로 인해 설정
+  display: inline-block;
+
+  @media (max-width: 768px) {
+    @include font_regular_14;
+  }
+}

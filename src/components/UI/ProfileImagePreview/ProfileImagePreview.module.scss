@@ -1,0 +1,40 @@
+.img {
+  position: absolute;
+  border-radius: 1.4px solid var(--white);
+  border-radius: 100px;
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+
+.profileContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 76px;
+  height: 28px;
+
+  :hover {
+    cursor: default;
+  }
+}
+
+.span {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  border: 1.4px solid var(--white);
+  width: 28px;
+  height: 28px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #484848;
+  background-color: var(--white);
+  object-fit: cover;
+
+  // 총 인원수 표시 안되서 추가
+  z-index: 10;
+}

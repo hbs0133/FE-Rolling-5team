@@ -1,0 +1,172 @@
+@import '../../styles/common.scss';
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.homepage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.homepage-section {
+  height: 324px;
+  border-radius: 16px;
+  background-color: var(--surface);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  animation: slideIn 1s ease-in-out;
+}
+.point {
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 50px;
+  padding: 6px 12px;
+  background-color: var(--purple-600);
+  @include font_bold_14;
+  line-height: 20px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.h1 {
+  @include font_bold_24;
+  line-height: 36px;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.h2 {
+  @include font-regular-18;
+  line-height: 28px;
+  color: var(--gray-500);
+}
+.homepage-section.reverse {
+  flex-direction: row-reverse;
+  justify-content: center;
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 0;
+  height: 56px;
+}
+
+#button {
+  padding: 0;
+}
+
+.buttonLink {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+a {
+  color: var(--white);
+}
+.bottomImage {
+  object-fit: contain;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .homepage {
+    padding: 0 24px;
+    margin-top: 49px;
+  }
+  .homepage-section,
+  .homepage-section.reverse {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 36px;
+  }
+  .homepage-content {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  .topImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+  }
+  .bottomImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+  }
+  .hideOnTablet {
+    display: none;
+  }
+  .buttonContainer {
+    margin: 72px auto 24px;
+    width: 100%;
+  }
+  #button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+  .homepage-wrapper {
+    gap: 24px;
+  }
+  .homepage {
+    padding: 0 20px;
+    margin-top: 42px;
+  }
+  .homepage-section,
+  .homepage-section.reverse {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    row-gap: 40px;
+  }
+  .homepage-section.reverse {
+    row-gap: 48px;
+  }
+  .homepage-content {
+    margin-left: 24px;
+    margin-top: 24px;
+    margin-right: 24px;
+  }
+  .hideOnTablet {
+    display: none;
+  }
+  .topImage {
+    align-self: center;
+    width: 123%;
+    height: auto;
+    margin-bottom: 55px;
+  }
+  .bottomImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 51px;
+  }
+  .h2 {
+    @include font-regular-15;
+  }
+  .buttonContainer {
+    margin: 61px auto 24px;
+  }
+  #button {
+    width: 100%;
+  }
+}

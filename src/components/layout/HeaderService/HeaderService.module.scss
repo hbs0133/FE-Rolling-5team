@@ -1,0 +1,135 @@
+@import "../../../styles/common.scss";
+
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.main {
+  width: 100%;
+  border-bottom: 1px solid #ededed;
+
+  position: sticky;
+  top: -2px;
+  z-index: 5;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .header-service {
+    width: 1200px;
+    margin: auto;
+    padding: 13px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .user-name {
+      @include font-style(28px, 700, 42px, var(--gray-800));
+      letter-spacing: -0.01em;
+    }
+
+    .service-wrapper {
+      display: flex;
+      align-items: center;
+
+      .vertical-divider {
+        height: 28px;
+        width: 0px;
+        border: 1px solid var(--gray-200);
+      }
+
+      .first-line {
+        background-color: #3a6481;
+        margin: 0 28px;
+      }
+
+      .second-line {
+        background-color: #3a6481;
+        margin: 0 13px;
+      }
+
+      .cumulative-user-container {
+        display: flex;
+        align-items: center;
+
+        gap: 11px;
+      }
+    }
+  }
+
+  .reaction-session {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .reaction-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+  }
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .main {
+    .header-service {
+      width: 100%;
+      padding: 13px 24px;
+    }
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .main {
+    .header-service {
+      width: 100%;
+      padding: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .user-name {
+        width: 100%;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .service-wrapper {
+        width: 100%;
+        padding: 8px 20px;
+        justify-content: space-between;
+
+        .second-line {
+          margin: 0 5px;
+        }
+
+        .reaction-session {
+          gap: 0px;
+        }
+      }
+    }
+  }
+}
+
+.main.dark-theme {
+  background-image: linear-gradient(-20deg, #0d3149 0%, #322955 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--text-color-dark);
+
+  .user-name {
+    color: var(--color-text);
+  }
+}
+
+.main.light-theme {
+  background-color: var(--white);
+}

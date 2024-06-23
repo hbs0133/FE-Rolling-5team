@@ -1,0 +1,180 @@
+@import "../../../../styles/common.scss";
+
+.container {
+  padding: 28px 24px 24px 24px;
+  width: 384px;
+  height: 280px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 8%);
+  background-color: #fff;
+  transform: scale(1);
+  transition: 0.3s;
+  margin: 0 auto;
+  .profile-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+
+    & > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 14px;
+
+      .profile-img {
+        width: 56px;
+        height: 56px;
+        border-radius: 100px;
+        border: 1px solid #eee;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        width: 200px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        @include font_regular_20;
+        &.invalid {
+          width: 300px;
+        }
+        & > span {
+          @include font_bold_20;
+        }
+        & > .invalid {
+          color: var(--error-red);
+          @include font-bold-15;
+          animation: blink 1.3s infinite ease-in-out;
+        }
+      }
+    }
+  }
+
+  .description {
+    margin-top: 16px;
+    height: 106px;
+    overflow: hidden;
+    @include font_regular_18;
+    line-height: 28px;
+    letter-spacing: -1%;
+    color: var(--gray-600);
+  }
+  .description.invalid {
+    color: var(--error-red);
+    @include font-bold-18;
+    animation: blink 1.3s infinite ease-in-out;
+  }
+
+  .date {
+    margin-top: 16px;
+    @include font_regular_12;
+    line-height: 18px;
+    letter-spacing: -0.5%;
+    color: var(--gray-400);
+  }
+  &.dark-theme {
+    background-color: var(--background-color-dark);
+    box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.1);
+    .profile-name {
+      color: var(--text-color-dark);
+    }
+    .description {
+      color: var(--text-color-dark);
+    }
+  }
+}
+
+.valid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  color: var(--purple-600);
+  @include font-bold-20;
+  animation: blink 2s infinite ease-in-out;
+}
+.validAnimation {
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.notoSans {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.nanumMyeongjo {
+  font-family: "나눔명조";
+}
+.handletter {
+  font-family: "Handletter";
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+// @media screen and (min-width: 1248px) {
+// }
+
+// @media screen and (min-width: 768px) and (max-width: 1247px) {
+//   .container {
+//     width: 100%;
+//     height: 284px;
+
+//     .description {
+//       margin-top: 16px;
+//       height: 110px;
+//       overflow: hidden;
+//       @include font_regular_18;
+//       line-height: 28px;
+//       letter-spacing: -1%;
+//       color: var(--gray-600);
+//     }
+//   }
+// }
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+    height: 230px;
+
+    .profile-wrap {
+      & > div {
+        .profile-name {
+          @include font_regular_18;
+
+          & > span {
+            @include font_bold_16;
+          }
+        }
+      }
+    }
+
+    .description {
+      margin-top: 16px;
+      height: 56px;
+      overflow: hidden;
+      @include font_regular_15;
+      line-height: 25px;
+      letter-spacing: -1%;
+      color: var(--gray-600);
+    }
+  }
+}

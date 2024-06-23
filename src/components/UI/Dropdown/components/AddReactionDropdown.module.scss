@@ -1,0 +1,45 @@
+.trigger:hover {
+  background-color: var(--gray-100);
+}
+
+.add-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  .text {
+    white-space: nowrap;
+  }
+}
+
+.emoji-button:hover {
+  background-color: rgba(0, 0, 0, 0.47);
+}
+
+.add-container.dark-theme {
+  .image {
+    filter: invert(100%) brightness(200%);
+  }
+
+  .text {
+    color: var(--background-color-light);
+  }
+}
+
+.dark-theme.trigger:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .trigger {
+    padding: 6px 8px;
+  }
+  .menu {
+    right: -78px;
+  }
+
+  .text {
+    display: none;
+  }
+}

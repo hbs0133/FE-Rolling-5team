@@ -1,0 +1,103 @@
+.container {
+  max-width: 1200px;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  padding: 50px 0 0;
+  margin: 0 auto;
+}
+
+.test {
+  margin: 0 auto;
+}
+
+.h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--black);
+  margin-bottom: 16px;
+
+  &.dark-theme {
+    color: var(--color-text);
+  }
+}
+
+.hot {
+  margin-bottom: 50px;
+}
+
+.new {
+  margin-bottom: 64px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: 0;
+}
+
+.buttonLink {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardList {
+  display: flex;
+  gap: 20px;
+}
+
+.skeleton {
+  width: 275px;
+  height: 260px;
+  border-radius: 15px;
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+  .container {
+    height: 100%;
+    padding: 50px 0;
+  }
+  .hot {
+    margin-bottom: 74px;
+  }
+  .new {
+    margin-bottom: 66px;
+  }
+  .buttonContainer {
+    padding: 0 20px;
+  }
+  .h1 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    padding-left: 20px;
+  }
+
+  .skeleton {
+    width: 208px;
+    height: 232px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    height: 100%;
+    padding: 40px 0;
+  }
+  .new {
+    margin-bottom: 156px;
+  }
+  .buttonContainer {
+    padding: 0 24px;
+  }
+  .h1 {
+    padding-left: 24px;
+  }
+}

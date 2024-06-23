@@ -1,0 +1,148 @@
+@import "../../styles/common.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 42px;
+  gap: 62px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+    gap: 50px;
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      label {
+        @include font-bold-24;
+        line-height: 36px;
+      }
+
+      input[type="text"] {
+        padding: 12px 16px;
+        height: 50px;
+        border: 1px solid var(--gray-300);
+        border-radius: 8px;
+        transition: 0.4s;
+        @include font_regular_16;
+        font-family: "Pretendard Variable", Pretendard, -apple-system,
+          BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif,
+          "Poppins";
+        &:hover {
+          border: 1px solid var(--gray-500);
+        }
+        &:focus {
+          border: 1px solid var(--gray-500);
+          outline: none;
+        }
+        &::placeholder {
+          @include font_regular_16;
+          font-family: "Pretendard Variable", Pretendard, -apple-system,
+            BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif,
+            "Poppins";
+        }
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+      .profile-preview-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        .profile-preview {
+          position: relative;
+          width: 80px;
+          height: 80px;
+          cursor: pointer;
+          .profile-preview-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 100px;
+            object-fit: contain;
+            box-shadow: 1px 1px 5px var(--gray-300);
+          }
+          .profile-image-button {
+            position: absolute;
+            bottom: -10px;
+            right: -3px;
+            z-index: 1;
+            cursor: pointer;
+            img {
+              width: 30px;
+            }
+          }
+        }
+        .profile-image-pickker-container {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          p {
+            color: var(--gray-500);
+            @include font-regular-16;
+          }
+          .profile-image-pickker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            img {
+              width: 70px;
+              &:hover {
+                scale: (1.2);
+              }
+            }
+          }
+        }
+      }
+    }
+    .button {
+      margin-bottom: 60px;
+    }
+  }
+  &.dark-theme {
+    .input-wrapper {
+      label {
+        color: var(--text-color-dark);
+      }
+      input[type="text"] {
+        background-color: var(--background-color-dark);
+        color: var(--text-color-dark);
+      }
+      .profile-preview-wrapper {
+        .profile-image-pickker-container {
+          p {
+            color: var(--text-color-dark);
+          }
+        }
+      }
+    }
+  }
+}
+
+.sCoreDream {
+  font-family: "S-CoreDream-3Light";
+}
+.mangoByeolbyeol {
+  font-family: "MangoByeolbyeol";
+}
+
+.Ownglyph {
+  font-family: "Ownglyph_jooreeletter-Rg";
+  font-size: 22px;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    .form {
+      width: 320px;
+    }
+  }
+}

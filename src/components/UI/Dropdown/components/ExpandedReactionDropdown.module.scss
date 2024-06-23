@@ -1,0 +1,49 @@
+.trigger {
+  border: none;
+  padding: 6px;
+}
+
+.trigger:hover {
+  background-color: var(--gray-100);
+}
+
+.dark-theme.trigger:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.emoji-container {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 8px;
+}
+
+.emoji-empty-container {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 14px;
+  cursor: default;
+}
+
+.arrow-image {
+  transition: transform 0.3s ease;
+}
+
+.arrow-image.dark-theme {
+  filter: invert(100%) brightness(200%);
+}
+
+.flipped {
+  transform: rotate(180deg);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .emoji-container {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 8px;
+    width: 100%;
+  }
+}

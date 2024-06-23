@@ -1,0 +1,61 @@
+/* Font MixIn */
+
+/* font-weight : bold */
+@mixin font_bold_28 {
+  font-weight: 700;
+  font-size: 28px;
+}
+@mixin font_bold_24 {
+  font-weight: 700;
+  font-size: 24px;
+}
+@mixin font_bold_20 {
+  font-weight: 700;
+  font-size: 20px;
+}
+@mixin font_bold_18 {
+  font-weight: 700;
+  font-size: 18px;
+}
+@mixin font_bold_16 {
+  font-weight: 700;
+  font-size: 16px;
+}
+@mixin font_bold_15 {
+  font-weight: 700;
+  font-size: 15px;
+}
+@mixin font_bold_14 {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* font-weight : regular */
+@mixin font_regular_24 {
+  font-weight: 400;
+  font-size: 24px;
+}
+@mixin font_regular_20 {
+  font-weight: 400;
+  font-size: 20px;
+}
+@mixin font_regular_18 {
+  font-weight: 400;
+  font-size: 18px;
+}
+@mixin font_regular_16 {
+  font-weight: 400;
+  font-size: 16px;
+}
+@mixin font_regular_15 {
+  font-weight: 400;
+  font-size: 15px;
+}
+@mixin font_regular_14 {
+  font-weight: 400;
+  font-size: 14px;
+}
+@mixin font_regular_12 {
+  font-weight: 400;
+  font-size: 12px;
+}

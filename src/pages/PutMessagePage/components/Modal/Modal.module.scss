@@ -1,0 +1,61 @@
+@import "../../../../styles/common.scss";
+
+.modal-open-button {
+  margin-bottom: 60px;
+}
+.modal-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 600px;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 16px;
+    .modal-content-recipient {
+      @include font-regular-18;
+      span {
+        @include font-bold-20;
+      }
+    }
+    .modal-buttons {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      .modal-close-btn {
+        background-color: var(--error-red);
+      }
+    }
+  }
+  &.dark-theme {
+    .modal-content {
+      background-color: var(--background-color-dark);
+      .modal-content-recipient {
+        color: var(--text-color-dark);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal-content {
+    width: 320px;
+    .modal-content-recipient {
+      @include font-regular-14;
+      span {
+        @include font-bold-18;
+      }
+    }
+  }
+}

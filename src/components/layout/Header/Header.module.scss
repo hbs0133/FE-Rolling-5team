@@ -1,0 +1,100 @@
+@import "../../../styles/common.scss";
+
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-bottom: 1px solid #ededed;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .header {
+    width: 1200px;
+    height: 62px;
+    margin: auto;
+    padding: 11px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .create-button {
+      @include font_bold_16;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 8px 16px;
+
+      text-align: center;
+      cursor: pointer;
+      color: var(--gray-900);
+      width: 157px;
+      height: 40px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .create-button:hover {
+      transform: scale(1.07);
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .main {
+    .header {
+      width: 100%;
+      padding: 11px 24px;
+    }
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+  .main {
+    .header {
+      width: 100%;
+      padding: 11px 16px;
+
+      .create-button {
+        @include font_bold_14;
+      }
+    }
+  }
+}
+
+.main.dark-theme {
+  background-color: rgba(#1e1c1f, 0.5);
+
+  color: var(--color-text);
+
+  .create-button {
+    background-color: rgba(#1e1c1f, 0.5);
+    color: var(--color-text);
+  }
+}

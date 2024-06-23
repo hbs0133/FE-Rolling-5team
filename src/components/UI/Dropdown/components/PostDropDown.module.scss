@@ -1,0 +1,56 @@
+@mixin font-style($size, $weight, $lineHeight, $color) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+// 드롭다운에서 열리는 trigger가 되는 버튼
+.trigger {
+  padding: 12px 16px;
+  width: 320px;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 드롭다운 trigger hover시
+.trigger:hover {
+  outline: 1.5px solid var(--gray-600);
+}
+
+// 드롭다운 trigger의 대표 text
+.trigger-name {
+  @include font-style(16px, 400, 26px, var(--gray-500));
+}
+
+// 드롭다운 trigger의 상태 : 드롭다운 펼쳐져 있을 때 굵게
+.open-trigger {
+  border: none;
+  outline: 2px solid var(--gray-700);
+}
+
+// 드롭다운 trigger에 hover시에도 굵게
+.open-trigger:hover {
+  border: none;
+  outline: 2px solid var(--gray-700);
+}
+
+// 드롭다운 items 전체 감싸는 menu
+.menu {
+  width: 320px;
+  padding: 10px 0;
+
+  // 드롭다운 각 항목들
+  .item {
+    @include font-style(16px, 400, 26px, var(--gray-900));
+    padding: 12px 16px;
+  }
+
+  // 드롭다운 각 항목들 hover시
+  .item:hover {
+    background-color: var(--gray-100);
+  }
+}

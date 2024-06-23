@@ -55,8 +55,7 @@ const PostMessageForm = ({ id }) => {
   const onImageChange = async () => {
     const file = profileImageFile;
     if (!file) {
-      const downloadURL = INITIAL_PROFILEIMAGEURL;
-      return downloadURL;
+      return null;
     }
     const storageRef = ref(storage, `files/${file.name}`);
 
@@ -84,14 +83,16 @@ const PostMessageForm = ({ id }) => {
     try {
       setIsSubmitting(true);
       const downloadURL = await onImageChange();
-      await postMessage(
-        {
-          ...values,
-          recipientId: Number(values.recipientId),
-          profileImageURL: downloadURL,
-        },
-        id
-      );
+      const messageData = {
+        ...values,
+        recipientId: Number(values.recipientId),
+      };
+
+      if (downloadURL) {
+        messageData.profileImageURL = downloadURL;
+      }
+
+      await postMessage(messageData, id);
       setValues(INITIAL_VALUES);
       navigate(`/post/${id}`);
     } catch (error) {

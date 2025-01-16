@@ -85,7 +85,7 @@
 ### - 랜딩페이지('/')
 | 기본 | 다크모드 |
 |:-:|:-:|
-| <img src="https://github.com/user-attachments/assets/17e9dd9b-bb94-4a29-8fef-b1c903bedef5" width="475" /> | <img src="https://github.com/user-attachments/assets/06f299df-c303-4849-9cdf-78f36d515e3d" width="475" /> |
+| <img src="https://github.com/user-attachments/assets/17e9dd9b-bb94-4a29-8fef-b1c903bedef5" width="475" height="314" /> | <img src="https://github.com/user-attachments/assets/06f299df-c303-4849-9cdf-78f36d515e3d" width="475" height="314" /> |
 
 - **롤링페이퍼 만들기 버튼**을 클릭하여 **롤링페이퍼 만들기 페이지('/post')** 로 이동할 수 있습니다.
 - **날씨모양 아이콘 토글버튼**을 클릭하여 **다크모드**를 활성화할 수 있습니다.
